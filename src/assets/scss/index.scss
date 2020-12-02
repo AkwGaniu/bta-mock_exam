@@ -1,0 +1,21 @@
+// Variables
+@import "./libraries/variables";
+
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+// Base
+@import "./base/initial-style";
+
+// Components
+@import "./components/login";
+@import "./components/register";
+@import "./components/dashboard";
+@import "./components/mobileNav";
+@import "./components/home";
+@import "./components/about";
+@import "./components/courseReg";
+@import "./components/resultChecker";
+@import "./components/testInstruction";
+@import "./components/test";
+

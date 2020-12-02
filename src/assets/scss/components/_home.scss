@@ -1,0 +1,53 @@
+.home-view-container {
+  padding: 10px;
+  background-color: #fffefe;
+  width: 100%;
+  background-color: transparent;
+
+  .sections{
+    width: 90%;
+    margin: 10px auto;
+    box-shadow: 2px 2px 4px black;
+    border-radius: 20px 10px;
+    @media (max-width: 768px) {
+      display: block;
+    }
+
+    .not-registered {
+      padding: 100px;
+      p {
+        text-align: center;
+        font-size: 30px;
+        color: $text-color;
+      }
+    }
+  }
+  .student-profile {
+    padding: 5px 30px;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+      display: block;
+    }
+    .icon {
+      font-size: 10px;
+    }
+    span {
+      padding-left: 20px;
+      font-size: 20px;
+      color:  #6b6a6a;
+    }
+  }
+  .time-table {
+    padding: 5px 30px;
+    
+    .exam-link {
+      padding: 5px 10px;
+      cursor: pointer;
+      background-color: $tertiary-color;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+    }
+  }
+}

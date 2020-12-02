@@ -1,0 +1,120 @@
+.dashboard-view-container {
+  position: relative;
+  .nav-head {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 40px;
+    background-color: $primary-color;
+
+    @media(max-width: 768px) {
+      display: none;
+    }
+    .logo-holder {
+      width: 50%;
+      .logo {
+        width: 85px;
+        height: 40px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .salutation {
+      width: 50%;
+      padding: 30px 0 0;
+      p {
+        font-family: 'Tangerine', serif;
+        text-shadow: 4px 4px 4px rgb(107, 106, 106);
+        text-align: right;
+        margin: 0;
+        color: rgb(36, 35, 35);
+        font-size: 30px;
+        font-weight: 500;            
+        @media(max-width: 768px) {
+          font-size: 25px;
+        }
+        span {
+          font-family: 'Tangerine', serif;
+
+        }
+      }
+    }
+  }
+  .mobile-nav {
+    display: none;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: $tertiary-color;
+
+    @media(max-width: 768px) {
+      display: flex;
+    }
+
+    .logo-holder {
+      width: 50%;
+      .logo {
+        width: 85px;
+        height: 40px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .toggle-nav {
+      width: 50%;
+      padding: 20px 0px;
+      text-align: right;
+      .nav-icon {
+        color: #060607;
+        font-size: 35px;
+      }
+    }
+  }
+  .main-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: $secondary-color;
+
+    .menus {
+      width: 25%;
+      background-color:  $menu-color;
+      height: 84.5vh;
+
+      @media(max-width: 768px) {
+        display: none
+      }
+
+      ul {
+        padding: 5px 0px 5px 0px;
+        margin: 0px;
+
+        li {
+          padding: 20px 20px;
+          margin: 0;
+          border-bottom: 1px solid #c7c5c2;
+          font-size: 20px;
+          color: $text-color;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $tertiary-color;
+            border-bottom: 1px solid white;
+            color: white;
+          }
+        }
+      }
+    }
+    .details {
+      width: 75%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+  }
+}
+.selected {
+  background-color: $tertiary-color;
+  color: white !important;
+  border-bottom: 1px solid white !important;
+}

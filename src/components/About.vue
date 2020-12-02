@@ -1,0 +1,14 @@
+<template>
+  <div class="about-view-container">
+    <div class="display-image">
+      <img src="#" alt="ILLUSTRATION IMAGE">
+    </div>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor consectetur congue. Sed bibendum arcu in turpis luctus cursus. Integer vitae nisl sed magna dapibus bibendum et non purus. Etiam sit amet diam quis est aliquet convallis eu nec ligula. Cras euismod mauris libero, a ornare lorem ullamcorper non. Maecenas purus sapien, tristique a dignissim id, feugiat nec ex. Nullam vitae consequat nisl. Nunc tortor purus, auctor eget purus ut, tempor laoreet massa. Sed turpis quam, sollicitudin efficitur diam id, euismod molestie orci.
+      Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare, tincidunt turpis ac, faucibus tellus. Etiam et nibh vulputate, molestie diam sed, ultricies nunc. Cras in suscipit sem.
+      Etiam tincidunt mauris eget dapibus rhoncus. Pellentesque in condimentum est, eu blandit ante. Proin dapibus dui quis mattis rhoncus. Phasellus vestibulum viverra tellus quis sodales. Maecenas porta, justo ac pulvinar placerat, orci odio efficitur nisi, eget tempor mi orci sodales odio. Donec neque mauris, vehicula in lobortis viverra, elementum at urna. In varius quam dictum semper tempus. Pellentesque bibendum enim ligula, posuere posuere ipsum eleifend vel. Praesent vel magna nec enim gravida rutrum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean et tortor turpis. Sed purus elit, lobortis feugiat ex ut, lacinia placerat diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent non tortor lorem. Sed ultrices non enim eu semper. Integer pulvinar lorem quis mi sollicitudin, ut consectetur dui ultrices.
+      Quisque et arcu eget diam fermentum vulputate in ac neque. Morbi laoreet condimentum est, ut efficitur erat. Aenean vitae cursus lacus. Vivamus consequat nisl orci, varius facilisis turpis ornare vitae. Suspendisse potenti. Nam semper venenatis sagittis. Cras bibendum semper maximus.
+      In hac habitasse platea dictumst. Donec gravida sem sit amet ex suscipit tristique. Proin interdum magna dui, et vehicula nulla elementum et. Suspendisse blandit nisl diam, non eleifend nisl accumsan ut. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec facilisis, orci ac tempor ultricies, erat lectus facilisis sapien, vel mattis nisl tellus quis quam. Aliquam laoreet tellus orci, sed facilisis velit maximus nec.
+    </p>
+  </div>
+</template>

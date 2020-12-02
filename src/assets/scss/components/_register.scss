@@ -1,0 +1,118 @@
+.register-view-container {
+  display: flex;
+  justify-content: space-between;
+  
+  .desc-image {
+    width: 50%;
+    height: 100vh;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  .register-proper {
+    background-color: $login-background;
+    width: 50%;
+    padding: 10px 90px;
+    height: 100vh;
+    @media(max-width: 768px) {
+      width: 100%;
+      padding: 50px 30px;
+    }
+    // .logo {
+    //   width: 200px;
+    //   margin: 10px auto;
+    //   img {
+    //     width: 100%;
+    //   }
+    // }
+    h3 {
+      margin: 30px 0px 15px;
+      color: $primary-color;
+      font-size: 25px;
+      text-align: center;
+      @media(max-width: 768px) {
+        margin-bottom: 40px;
+      }
+    }
+    .form-group {
+      label {
+        display: block;
+        text-align: left;
+        letter-spacing: 2px;
+        font-size: 12px;
+        margin: 0;
+        color: $tertiary-color;
+      }
+      input {
+        margin: 0 0 10px;
+        width: 100%;
+        padding: 0 0 1px 0;
+        font-size: 15px;
+        color: grey;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid $tertiary-color;
+        outline: none;
+      }
+      input::placeholder {
+        display: block;
+        text-align: left;
+        letter-spacing: 2px;
+        font-size: 12px;
+        margin: 0;
+        color: $tertiary-color;
+      }
+    }
+    .error {
+      color: $error-msg-color;
+      font-size: 15px;
+      text-align: center;
+      display: block;
+    }
+    .forgot-password {
+      text-decoration: none;
+      color: $tertiary-color;
+      cursor: pointer;
+      text-align: right;
+      display: block;
+    &:hover {
+        color: rgb(87, 85, 85);
+      }
+    }
+    .register-btn {
+      display: block;
+      width: 40%;
+      margin: 28px auto;
+      border-radius: 15px;
+      background-color: $tertiary-color;
+      color:white;
+      padding: 5px 10px;
+      font-size: 18px;
+      outline: none;
+      border: none;
+      &:hover {
+        background-color: $secondary-color;
+      }
+    }
+    .login-link {
+      text-align: center;
+      margin-top: 60px;
+      color: $tertiary-color;
+      @media(max-width: 768px) {
+        margin: 0px;
+      }
+      a {
+        text-decoration: underline;
+        cursor: pointer;
+        color: inherit;
+        &:hover {
+          color: rgb(87, 85, 85);
+        }
+      }
+    }
+  }
+}

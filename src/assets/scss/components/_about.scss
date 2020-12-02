@@ -1,0 +1,30 @@
+.about-view-container {
+  overflow-y: scroll;
+  padding: 30px 60px;
+  height: 84vh;
+  .display-image {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  p {
+    margin: 0px;
+    padding: 0px;
+    font-size: 15px;
+    color:  #6b6a6a;
+    line-height: 30px;
+    word-spacing: 5px;
+    text-justify: newspaper;
+    .read-more {
+      text-decoration: none;
+      cursor: pointer;
+      color: rgb(1, 1, 71);
+
+      &:hover {
+        color: rgb(87, 85, 85);
+        text-decoration: underline;
+      }
+    }
+  }
+}

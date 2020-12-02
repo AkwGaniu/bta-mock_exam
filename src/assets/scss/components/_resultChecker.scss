@@ -1,0 +1,49 @@
+.result-checker-view-container {
+  .sections{
+    width: 90%;
+    margin: 10px auto;
+    padding: 5px 30px;
+    box-shadow: 2px 2px 4px black;
+    border-radius: 20px 10px;
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+  .student-profile {
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 768px) {
+      display: block;
+    }
+    .icon {
+      font-size: 10px;
+    }
+    span {
+      padding-left: 20px;
+      font-size: 20px;
+      color:  #6b6a6a;
+    }
+  }
+  .no-result {
+    padding: 100px;
+    p {
+      text-align: center;
+      font-size: 30px;
+      color: $text-color;
+    }
+  }
+  .result-holder {
+    padding-top: 20px;
+    h2 {
+      color: $text-color;
+    }
+  }
+
+  .remark-holder {
+    padding: 40px 0px 20px;
+    p {
+      color: $text-color;
+      font-size: 25px;
+    }
+  }
+}
