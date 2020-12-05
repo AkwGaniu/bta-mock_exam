@@ -7,6 +7,7 @@
           @click="toggleView('home'); toggleMobileNav()"
         >Home</li>
         <li
+          v-if="!registeredForCourses"
           :class="{selected: nav.courseReg}"
           @click="toggleView('course reg'); toggleMobileNav()"
         >Course Registration</li>
@@ -42,7 +43,8 @@ export default {
     toggleMobileNav: Function,
     toggleView: Function,
     signOut: Function,
-    nav: Object
+    nav: Object,
+    registeredForCourses: Boolean
   }
 }
 </script>

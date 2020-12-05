@@ -1,0 +1,74 @@
+.upload-question-view-container {
+  background-color: transparent;
+  padding: 10px 20px;
+  overflow-y: scroll;
+  height: 100%;
+
+
+  .sections{
+    width: 90%;
+    margin: 10px auto;
+    box-shadow: -2px -2px 5px rgb(0, 0, 0, 0.1),  2px 2px 5px rgb(0, 0, 0, 0.1);
+    border-radius: 20px 10px;
+    padding: 10px 20px 30px;
+    
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+  .upload-question {
+    width: 80%;
+    margin: 0px auto;
+    .error {
+      color: $error-msg-color;
+      font-size: 15px;
+      text-align: center;
+      display: block;
+      margin: 0px;
+    }
+    .form-holder {
+      margin: 20px 10px;
+      label {
+        display: block;
+        color: $text-color;
+        margin: 0px;
+        font-weight: bold;
+        font-size: 20px;
+        padding-left: 5px;
+      }
+      .input {
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        outline: none;
+        color: $text-color;
+        background-color: rgb(255, 249, 249);
+      }
+  
+      textarea {
+        resize: none;
+      }
+      a {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        width: 40%;
+        margin: 30px auto 0px;
+        border-radius: 15px;
+        background-color: $tertiary-color;
+        color:white;
+        padding: 5px 10px;
+        font-size: 25px;
+        outline: none;
+        border: none;
+        @media(max-width: 768px) {
+          width: 40%;
+        }
+        &:hover {
+          background-color: $hover-color;
+        }
+      }
+    }
+  }
+}

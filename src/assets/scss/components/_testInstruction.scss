@@ -1,6 +1,6 @@
 .test-instruction-view-container {
   background-color: $secondary-color;
-
+  min-height: 100vh;
   h1 {
     padding: 30px 100px;
     color: $tertiary-color;
@@ -47,7 +47,7 @@
       font-size: 20px;
     }
     .start-quiz {
-      margin-top: 50px;
+      padding: 50px 0px 30px;
 
       .start-quiz-btn {
         border-radius: 15px;
@@ -55,11 +55,11 @@
         color:white;
         padding: 10px 20px;
         width: 100%;
-        font-size: 18px;
+        font-size: 25px;
         text-decoration: none;
         
         &:hover {
-          background-color: $secondary-color;
+          background-color: $hover-color;
         }
       }
     }

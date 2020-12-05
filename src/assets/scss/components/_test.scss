@@ -29,6 +29,13 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 0.5px solid grey;
+
+    .student-details {
+      .matric {
+        color: goldenrod !important;
+        font-weight: bold;
+      }
+    }
     h1 {
       padding: 0px 100px;
       color: $tertiary-color;
@@ -40,13 +47,12 @@
         display: none;
       }
     }
-    .student-details {
-      .matric {
-        color: goldenrod !important;
-        font-weight: bold;
+    .timer {
+      p {
+        color: rgb(250, 7, 7);
+        font-size: 22px;
       }
     }
-
   }
   .lower-section {
     display: flex;
@@ -89,6 +95,7 @@
 
         p {
           font-size: 18px;
+          font-weight: 500;
         }
       }
       .answers {
@@ -101,7 +108,8 @@
         .custom-radio {
           display: block !important;
           padding: 10px 0px 20px;
-          font-size: 20px;
+          font-size: 16px;
+          color: $text-color;
           @media (max-width: 768px) {
             padding: 10px 0px 10px;
           }
@@ -134,7 +142,6 @@
         border: none;
         background-color: $tertiary-color;
         color: white;
-
       }
     }
   }

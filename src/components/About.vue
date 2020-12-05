@@ -1,7 +1,7 @@
 <template>
   <div class="about-view-container">
     <div class="display-image">
-      <img src="#" alt="ILLUSTRATION IMAGE">
+      <img src="../assets/about-img.jpg" alt="ILLUSTRATION IMAGE">
     </div>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor consectetur congue. Sed bibendum arcu in turpis luctus cursus. Integer vitae nisl sed magna dapibus bibendum et non purus. Etiam sit amet diam quis est aliquet convallis eu nec ligula. Cras euismod mauris libero, a ornare lorem ullamcorper non. Maecenas purus sapien, tristique a dignissim id, feugiat nec ex. Nullam vitae consequat nisl. Nunc tortor purus, auctor eget purus ut, tempor laoreet massa. Sed turpis quam, sollicitudin efficitur diam id, euismod molestie orci.

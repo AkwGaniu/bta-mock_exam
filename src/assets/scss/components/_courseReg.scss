@@ -45,14 +45,14 @@
       background-color: $tertiary-color;
       color:white;
       padding: 5px 10px;
-      font-size: 18px;
+      font-size: 25px;
       outline: none;
       border: none;
       @media(max-width: 768px) {
         width: 40%;
       }
       &:hover {
-        background-color: $primary-color;
+        background-color: $hover-color;
       }
     }
   }

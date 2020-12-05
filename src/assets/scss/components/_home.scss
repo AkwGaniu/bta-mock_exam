@@ -7,7 +7,7 @@
   .sections{
     width: 90%;
     margin: 10px auto;
-    box-shadow: 2px 2px 4px black;
+    box-shadow: -2px -2px 5px rgb(0, 0, 0, 0.1),  2px 2px 5px rgb(0, 0, 0, 0.1);
     border-radius: 20px 10px;
     @media (max-width: 768px) {
       display: block;

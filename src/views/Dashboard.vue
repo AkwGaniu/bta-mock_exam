@@ -78,6 +78,7 @@
       :toggleView="toggleView"
       :nav="nav"
       :signOut="signOut"
+      :registeredForCourses="registeredForCourses"
     ></MobileNavModal>
   </div>
 </template>

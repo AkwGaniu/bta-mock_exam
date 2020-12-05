@@ -1,0 +1,88 @@
+.admin-dashboard-view-container {
+  background-color: $secondary-color;
+  height: 100vh;
+  overflow-y: hidden;
+  .nav-head {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: $nav-color;
+
+    @media(max-width: 768px) {
+      display: none;
+    }
+    .logo-holder {
+      width: 50%;
+      .logo {
+        width: 85px;
+        height: 40px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .about-admin {
+      padding: 20px 0px;
+      p {
+        display: inline;
+        color: $text-color;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 21px;
+        line-height: 31px;           
+      }
+      .avatar {
+        display: inline;
+        border-radius: 50%;
+        padding: 10px 20px;
+        margin-left: 5px;
+        background-color: white;
+      }
+      span {
+        padding-top: 5px;
+        width: 14%;
+      }
+    }
+  }
+  .main-container {
+    display: flex;
+    justify-content: space-between;
+    height: 525px;
+    .menus {
+      width: 25%;
+      background-color:  $menu-color;
+      height: 100%;
+      @media(max-width: 768px) {
+        display: none
+      }
+
+      ul {
+        padding: 5px 0px 5px 0px;
+        margin: 0px;
+
+        li {
+          padding: 20px 20px;
+          margin: 0;
+          border-bottom: 1px solid #c7c5c2;
+          font-size: 20px;
+          color: $text-color;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $tertiary-color;
+            border-bottom: 1px solid white;
+            color: white;
+          }
+        }
+      }
+    }
+    .details {
+      width: 100%;
+      height: 100%;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+  }
+}

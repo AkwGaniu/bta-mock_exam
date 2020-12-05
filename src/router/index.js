@@ -5,6 +5,8 @@ import Register from '../views/Register.vue'
 import Dashoard from '../views/Dashboard.vue'
 import TestInstruction from '../views/TestInstruction.vue'
 import Test from '../views/Test.vue'
+import AminLogin from '../views/admin/AdminLogin.vue'
+import AdminDashboard from '../views/admin/AdminDashboard.vue'
 
 Vue.use(VueRouter)
 
@@ -26,13 +28,23 @@ const routes = [
   },
   {
     path: '/instruction/:course',
-    name: 'Test',
+    name: 'Test Instruction',
     component: TestInstruction
   },
   {
     path: '/test/:course',
     name: 'Test',
     component: Test
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: AminLogin
+  },
+  {
+    path: '/index',
+    name: 'Admin Home',
+    component: AdminDashboard
   }
 ]
 

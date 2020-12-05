@@ -1,8 +1,6 @@
 <template>
   <div class="register-view-container">
-    <div class="desc-image">
-        <img src="../assets/pp.jpg" alt="BTA LOGO">
-    </div>
+
     <div class="register-proper">
       <h3>Basic Tutor Academy</h3>
       <div class="registration-form">
@@ -134,6 +132,8 @@
         </button>
         <p class="login-link">Already have an account? <router-link to="/">Login Here</router-link></p>
       </div>
+    </div>
+    <div class="desc-image">
     </div>
   </div>
 </template>

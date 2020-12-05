@@ -1,23 +1,21 @@
 <template>
   <div class="login-view-container">
-    <div class="desc-image">
+    <div class="admin-desc-image">
     </div>
     <div class="login-proper">
-      <div class="logo">
-        <img src="../assets/BTA.png" alt="BTA LOGO">
-      </div>
       <div class="login-form">
+        <h1>Admin LogIn</h1>
         <form>
           <div class="form-group">
             <label
               for="matric-num"
               v-show="matricLabel"
-            >Matric Number</label>
+            >User Name</label>
             <input
               :class="{errorColor: formError.matric}"
               type="text"
               autocomplete="off"
-              placeholder="Matric Number"
+              placeholder="User Name"
               ref="matricField"
               v-model="formData.matricNum"
               @keyup.enter="logIn"
@@ -60,7 +58,7 @@
             v-else
           >Sign In</span>
         </button>
-        <p class="reg-link">New BTA studdent? <router-link to="/register">Create Account</router-link></p>
+        <p class="reg-link">Have no account? <router-link to="#">Contact BTA</router-link></p>
       </div>
     </div>
   </div>
@@ -106,7 +104,7 @@ export default {
           password: ''
         }
 
-        self.location = '/dashboard'
+        self.location = '/index'
         const url = ''
         const payload = {
           matricNum: matricNum,

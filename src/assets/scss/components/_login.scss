@@ -4,11 +4,20 @@
   
   .desc-image {
     width: 50%;
-    height: 100vh;
-    img {
-      width: 100%;
-      height: 100%;
+    background: url(../login-img.jpg);
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media (max-width: 768px) {
+      display: none;
     }
+  }
+  .admin-desc-image {
+    width: 50%;
+    background: url(../admin-login.jpg);
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    background-size: cover;
     @media (max-width: 768px) {
       display: none;
     }
@@ -16,11 +25,19 @@
   .login-proper {
     background-color: $login-background;
     width: 50%;
-    padding: 10px 90px;
+    padding: 0px 90px 10px;
     height: 100vh;
     @media(max-width: 768px) {
       width: 100%;
       padding: 10px 30px;
+    }
+
+    h1 {
+      padding: 80px 100px;
+      color: $tertiary-color;
+      text-align: center;
+      font-weight: bold;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
     .logo {
       width: 300px;
@@ -47,7 +64,7 @@
         color: grey;
         background-color: transparent;
         border: 0;
-        border-bottom: 2px solid $tertiary-color;
+        border-bottom: .1px solid $primary-color;
         outline: none;
       }
       input::placeholder {
@@ -70,7 +87,7 @@
       text-align: right;
       display: block;
     &:hover {
-        color: rgb(87, 85, 85);
+        color: $hover-color;
       }
     }
     .sign-in-btn {
@@ -81,14 +98,14 @@
       background-color: $tertiary-color;
       color:white;
       padding: 5px 10px;
-      font-size: 18px;
+      font-size: 25px;
       outline: none;
       border: none;
       @media(max-width: 768px) {
         width: 40%;
       }
       &:hover {
-        background-color: $primary-color;
+        background-color: $hover-color;
       }
     }
     .reg-link {
@@ -103,7 +120,7 @@
         cursor: pointer;
         color: inherit;
         &:hover {
-          color: rgb(87, 85, 85);
+          color: $hover-color;
         }
       }
     }

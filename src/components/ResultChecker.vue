@@ -51,12 +51,40 @@
         v-else
         class="result-holder"
       >
-        <h2>Result</h2>
         <div class="result-table">
-          <b-table striped hover :items="items"></b-table>
+          <div class="head">
+            <span class="c-code-head">Course Code</span>
+            <span class="unit-head">Unit</span>
+            <span class="gp-head">GP</span>
+            <span class="c-unit-head">Credit Unit</span>
+          </div>
+          <div class="head-title">
+            <span>2019/2020</span>
+            <span>100 Level</span>
+          </div>
+          <p class="semester">Harmattan:::</p>
+          <table>
+            <tbody>
+              <tr
+                v-for="(item, index) in items"
+                :key="index"
+              >
+                <td> {{ item.course_code }} </td>
+                <td> {{ item.unit }} </td>
+                <td> {{ item.gp }} </td>
+                <td> {{ item.point }} </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="pre-summary">
+            TNU:21 TCP: 90 GP: 4.29 CGPA: 4.54
+          </p>
+          <p class="summary">
+            <b>Summay: CTNUP: 21 CGPA: 4.34 </b> Good Standing
+          </p>
         </div>
         <div class="remark-holder">
-          <p class="remark"><b>Remark: </b> Some remark to student according to performance</p>
+          <p class="remark"><b>Remark: </b> <br> Some remark to student according to performance</p>
         </div>
       </div>
     </div>
@@ -66,15 +94,15 @@
 export default {
   data () {
     return {
-      noResult: true,
+      noResult: false,
       items: [
-        { Corse_title: 40, course_code: 'Dickerson', Date: 'Macdonald', Action: 'action' },
-        { Corse_title: 40, course_code: 'Dickerson', Date: 'Macdonald', Action: 'action' },
-        { Corse_title: 40, course_code: 'Dickerson', Date: 'Macdonald', Action: 'action' },
-        { Corse_title: 40, course_code: 'Dickerson', Date: 'Macdonald', Action: 'action' },
-        { Corse_title: 40, course_code: 'Dickerson', Date: 'Macdonald', Action: 'action' },
-        { Corse_title: 40, course_code: 'Dickerson', Date: 'Macdonald', Action: 'action' },
-        { Corse_title: 40, course_code: 'Dickerson', Date: 'Macdonald', Action: 'action' }
+        { course_code: 'BIO 101', unit: 3, gp: 5, point: 45 },
+        { course_code: 'BIO 101', unit: 3, gp: 5, point: 45 },
+        { course_code: 'BIO 101', unit: 3, gp: 5, point: 45 },
+        { course_code: 'BIO 101', unit: 3, gp: 5, point: 45 },
+        { course_code: 'BIO 101', unit: 3, gp: 5, point: 45 },
+        { course_code: 'BIO 101', unit: 3, gp: 5, point: 45 },
+        { course_code: 'BIO 101', unit: 3, gp: 5, point: 45 }
       ]
     }
   }
