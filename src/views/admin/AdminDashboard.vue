@@ -15,6 +15,25 @@
         </div>
       </div>
     </div>
+    <div class="mobile-nav">
+      <div class="logo-holder">
+        <div class="logo">
+          <router-link to="/dashboard">
+            <img src="../../assets/BTA11.png" alt="BTA LOGO">
+          </router-link>
+        </div>
+      </div>
+      <div class="toggle-nav">
+        <span>
+          <b-icon
+            v-show="!showMobileNav"
+            icon="list"
+            class="nav-icon"
+            @click="toggleMobileNav"
+          ></b-icon>
+        </span>
+      </div>
+    </div>
     <main class="main-container">
       <div class="menus">
         <ul>
@@ -43,17 +62,27 @@
         ></Home>
       </section>
     </main>
+    <AdminMobileNavModal
+      v-show="showMobileNav"
+      :toggleMobileNav="toggleMobileNav"
+      :navigateView="navigateView"
+      :view="view"
+      :signOut="signOut"
+    ></AdminMobileNavModal>
   </div>
 </template>
 <script>
 import UploadQuestion from '../../components/admin/UploadQuestion.vue'
 import ScheduleQuiz from '../../components/admin/ScheduleQuiz.vue'
 import Home from '../../components/admin/AdminHome.vue'
+import AdminMobileNavModal from '../../components/admin/AdminMobileNavModal.vue'
+
 export default {
   components: {
     UploadQuestion,
     ScheduleQuiz,
-    Home
+    Home,
+    AdminMobileNavModal
   },
   data () {
     return {
@@ -61,10 +90,14 @@ export default {
         upload: false,
         schedule: false,
         home: true
-      }
+      },
+      showMobileNav: false
     }
   },
   methods: {
+    toggleMobileNav () {
+      this.showMobileNav = !this.showMobileNav
+    },
     navigateView (view) {
       if (view === 'upload') {
         this.view = {

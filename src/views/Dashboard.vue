@@ -114,11 +114,6 @@ export default {
   methods: {
     toggleMobileNav () {
       this.showMobileNav = !this.showMobileNav
-      if (this.showMobileNav) {
-        document.documentElement.style.overflowY = 'hidden'
-      } else {
-        document.documentElement.style.overflowY = 'scroll'
-      }
     },
     toggleView (view) {
       if (view === 'home') {
