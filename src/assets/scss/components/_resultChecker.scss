@@ -36,9 +36,14 @@
     padding-top: 20px;
     display: flex;
     color: $text-color;
-
+    @media (max-width: 768px) {
+      display: block;
+    }
     .result-table {
       width: 40%;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
       .head {
         span {
           display: inline-block;
@@ -93,7 +98,5 @@
         font-size: 20px;
       }
     }
-
   }
-
 }

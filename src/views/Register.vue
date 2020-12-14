@@ -92,6 +92,7 @@
             <input
               type="password"
               placeholder="Password"
+              autocomplete="off"
               :class="{errorColor: formError.password}"
               v-model="formData.password"
               @keyup.enter="Register"
@@ -107,6 +108,7 @@
             <input
               type="password"
               placeholder="Comfirm Password"
+              autocomplete="off"
               :class="{errorColor: formError.comfirmPassError}"
               v-model="formData.comfirmPassword"
               @keyup.enter="Register"

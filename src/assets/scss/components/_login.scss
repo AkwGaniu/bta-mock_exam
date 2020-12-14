@@ -47,6 +47,13 @@
         width: 100%;
       }
     }
+    .redirect-error {
+      color: $error-msg-color;
+      font-size: 15px;
+      text-align: center;
+      display: block;
+      margin-bottom: 10px;
+    }
     .form-group {
       label {
         display: block;
@@ -67,6 +74,10 @@
         border-bottom: .1px solid $primary-color;
         outline: none;
       }
+      .error {
+        color: $error-msg-color;
+        font-size: 15px;
+      }
       input::placeholder {
         display: block;
         text-align: left;
@@ -74,10 +85,6 @@
         font-size: 12px;
         margin: 0;
         color: $tertiary-color;
-      }
-      .error {
-        color: $error-msg-color;
-        font-size: 15px;
       }
     }
     .forgot-password {
@@ -93,7 +100,7 @@
     .sign-in-btn {
       display: block;
       width: 40%;
-      margin: 40px auto;
+      margin: 10px auto;
       border-radius: 15px;
       background-color: $tertiary-color;
       color:white;

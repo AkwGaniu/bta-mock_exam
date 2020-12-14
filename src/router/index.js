@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+import store from '../store/index.js'
+
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Dashoard from '../views/Dashboard.vue'
@@ -24,7 +27,20 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashoard',
-    component: Dashoard
+    component: Dashoard,
+    async beforeEnter (to, from, next) {
+      try {
+        const isAuthourized = await store.getters.isAuthenticated
+        if (isAuthourized) {
+          next()
+        }
+      } catch (error) {
+        next({
+          name: 'login',
+          query: { redirectFrom: to.fullPath }
+        })
+      }
+    }
   },
   {
     path: '/instruction/:course',

@@ -7,6 +7,7 @@
         <img src="../assets/BTA.png" alt="BTA LOGO">
       </div>
       <div class="login-form">
+        <span class="redirect-error"> {{ error }} </span>
         <form>
           <div class="form-group">
             <label
@@ -20,7 +21,7 @@
               placeholder="Matric Number"
               ref="matricField"
               v-model="formData.matricNum"
-              @keyup.enter="logIn"
+              @keyup.enter="tryLogIn"
               @keyup="showLabel"
               @blur="matricLabel = false"
             >
@@ -35,9 +36,10 @@
               :class="{errorColor: formError.password}"
               type="password"
               placeholder="Password"
+              autocomplete="off"
               ref="passwordField"
               v-model="formData.password"
-              @keyup.enter="logIn"
+              @keyup.enter="tryLogIn"
               @keyup="showLabel"
               @blur="passwordLabel = false"
             >
@@ -48,7 +50,7 @@
         <button
           class="sign-in-btn"
           ref="btn"
-          @click="logIn"
+          @click="tryLogIn"
         >
           <b-icon
             v-if="processing"
@@ -67,9 +69,11 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
+      error: '',
       processing: false,
       matricLabel: false,
       passwordLabel: false,
@@ -85,8 +89,20 @@ export default {
       }
     }
   },
+  beforeRouteEnter (to, from, next) {
+    if (to.query.redirectFrom) {
+      next(vm => {
+        vm.error = 'Please login to access your dashboard'
+      })
+    } else {
+      next()
+    }
+  },
   methods: {
-    logIn () {
+    ...mapActions([
+      'logIn'
+    ]),
+    tryLogIn () {
       const { matricNum, password } = this.formData
 
       if (matricNum === '') {
@@ -106,26 +122,19 @@ export default {
           password: ''
         }
 
-        self.location = '/dashboard'
-        const url = ''
+        // const payload = {
+        //   matricNum: matricNum,
+        //   password: password
+        // }
         const payload = {
-          matricNum: matricNum,
-          password: password
-        }
-        const config = {
-          method: 'post',
-          body: JSON.stringify(payload),
-          headers: { 'Content-Type': 'application/json' }
+          name: 'Akowanu Ganiu Oluwaseto',
+          matricNum: 170591096,
+          level: '400 Level',
+          dept: 'Computer Science'
         }
 
-        fetch(url, config).then(resp => {
-          if (resp.ok) {
-            return resp.json()
-          }
-        }).then(data => {
-          console.log(data)
-        }).catch(error => {
-          console.log(error)
+        this.logIn(payload).then(() => {
+          this.$router.push('/dashboard')
         })
       }
     },
@@ -142,6 +151,5 @@ export default {
     //   }
     // }
   }
-
 }
 </script>

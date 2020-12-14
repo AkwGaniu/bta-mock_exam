@@ -3,9 +3,7 @@
   height: 100vh;
   padding: 30px;
   @media (max-width: 768px) {
-    height: 100%;
     padding: 20px 30px;
-
   }
   .title {
     display: none;
@@ -72,6 +70,7 @@
         border-radius: 50%;
         margin: 10px 5px;
         color: whitesmoke;
+        cursor: pointer;
       }
     }
     .show-question {
@@ -106,22 +105,25 @@
           display: block;
         }
         .custom-radio {
-          display: block !important;
+          width: 47%;
+          display: inline-block !important;
           padding: 10px 0px 20px;
           font-size: 16px;
           color: $text-color;
           @media (max-width: 768px) {
             padding: 10px 0px 10px;
+            width: 100%;
+
           }
         }
         .left {
-          width: 50%;
+          width: 100%;
           @media (max-width: 768px) {
             width: 100%;
           }
         }
         .right {
-          width: 50%;
+          width: 0%;
           @media (max-width: 768px) {
             width: 100%;
           }
@@ -145,4 +147,14 @@
       }
     }
   }
+}
+
+.currentQuestion {
+  background-color: $tertiary-color !important;
+}
+.disabled {
+  cursor: not-allowed;
+}
+.attempted {
+  background-color: rgb(138, 236, 138) !important;
 }

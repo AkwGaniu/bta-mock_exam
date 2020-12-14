@@ -90,6 +90,8 @@ import MobileNavModal from '@/components/MobileNavModal.vue'
 import Home from '@/components/Home.vue'
 import About from '@/components/About.vue'
 
+import { mapActions, mapState } from 'vuex'
+
 export default {
   components: {
     CourseReg,
@@ -111,7 +113,21 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState([
+      'user'
+    ])
+    // ...mapGetters([
+    //   'isAuthenticated'
+    // ]),
+    // userIsLoggedIn () {
+    //   return this.isAuthenticated
+    // }
+  },
   methods: {
+    ...mapActions([
+      'logOut'
+    ]),
     toggleMobileNav () {
       this.showMobileNav = !this.showMobileNav
     },
@@ -147,8 +163,12 @@ export default {
       }
     },
     signOut () {
-      self.location = '/'
+      this.logOut().then(_ => {
+        this.$router.push('/')
+      })
     }
+  },
+  created () {
   }
 }
 </script>

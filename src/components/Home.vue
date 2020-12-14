@@ -8,7 +8,7 @@
             icon="person"
             font-scale="1.2"
           ></b-icon>
-          <span>Shodipo Uthman Oluwseto</span>
+          <span> {{ user.name }} </span>
         </p>
         <p class="matric">
           <b-icon
@@ -16,17 +16,17 @@
             icon="layers"
             font-scale="1.2"
           ></b-icon>
-          <span>160548796</span>
+          <span> {{ user.matricNum }} </span>
         </p>
        </div>
        <div class="user-bottom">
-                 <p class="dept">
+        <p class="dept">
           <b-icon
             class="icon"
             icon="bookmarks"
             font-scale="1.2"
           ></b-icon>
-          <span>Computer Science</span>
+          <span> {{ user.dept }} </span>
         </p>
         <p class="level">
            <b-icon
@@ -34,7 +34,7 @@
             icon="sort-up"
             font-scale="1.2"
           ></b-icon>
-          <span>400L</span>
+          <span> {{ user.level }} </span>
         </p>
        </div>
       </div>
@@ -66,6 +66,8 @@
   </div>
 </template>
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   props: {
     registeredForCourses: Boolean
@@ -82,6 +84,26 @@ export default {
         { Corse_title: 40, course_code: 'Dickerson', Date: 'Macdonald', Action: 'action' }
       ]
     }
+  },
+  computed: {
+    ...mapState([
+      'user'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'setUserDetails'
+    ])
+  },
+  created () {
+    const payload = {
+      name: 'Shodipo Uthman Oluwaseto',
+      matricNum: 170591096,
+      level: '100 Level',
+      dept: 'Computer Science'
+    }
+
+    this.setUserDetails(payload)
   }
 }
 </script>
