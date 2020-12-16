@@ -26,6 +26,9 @@ export default {
     //   console.log(error)
     // })
   },
+  toggleTestAvailable: ({ commit }) => {
+    commit('toggleTestAvailable')
+  },
   logOut: ({ commit }) => {
     return new Promise(resolve => {
       setTimeout(() => {

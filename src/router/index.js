@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: '/dashboard',
-    name: 'dashoard',
+    name: 'dashboard',
     component: Dashoard,
     async beforeEnter (to, from, next) {
       try {
@@ -44,13 +44,39 @@ const routes = [
   },
   {
     path: '/instruction/:course',
-    name: 'Test Instruction',
-    component: TestInstruction
+    name: 'TestInstruction',
+    component: TestInstruction,
+    async beforeEnter (to, from, next) {
+      try {
+        const isAuthourized = await store.getters.testAvailable
+        if (isAuthourized) {
+          next()
+        }
+      } catch (error) {
+        next({
+          name: 'dashboard'
+          // query: { redirectFrom: to.fullPath }
+        })
+      }
+    }
   },
   {
     path: '/test/:course',
     name: 'Test',
-    component: Test
+    component: Test,
+    async beforeEnter (to, from, next) {
+      try {
+        const isAuthourized = await store.getters.testAvailable
+        if (isAuthourized) {
+          next()
+        }
+      } catch (error) {
+        next({
+          name: 'dashboard',
+          query: { redirectFrom: to.fullPath }
+        })
+      }
+    }
   },
   {
     path: '/admin',
@@ -59,7 +85,7 @@ const routes = [
   },
   {
     path: '/index',
-    name: 'Admin Home',
+    name: 'AdminHome',
     component: AdminDashboard
   }
 ]

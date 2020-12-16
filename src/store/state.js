@@ -1,6 +1,7 @@
 export default {
   user: Object,
   isLoggedIn: !!localStorage.getItem('bta_user_token'),
+  testAvailable: false,
   questions: [
     {
       question: 'Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -9,9 +10,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'answewwer',
-      selected: ''
-
+      answer: 'answewwer'
     },
     {
       question: 'nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -20,8 +19,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'ansewewwwwer',
-      selected: ''
+      answer: 'ansewewwwwer'
     },
     {
       question: 'Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -30,8 +28,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'answerwer',
-      selected: ''
+      answer: 'answerwer'
     },
     {
       question: 'Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -40,8 +37,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'answwr',
-      selected: ''
+      answer: 'answwr'
     },
     {
       question: 'Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -50,8 +46,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'answerwewe',
-      selected: ''
+      answer: 'answerwewe'
     },
     {
       question: 'Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -60,8 +55,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'answerddd',
-      selected: ''
+      answer: 'answerddd'
     },
     {
       question: 'Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -70,8 +64,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'anwer',
-      selected: ''
+      answer: 'anwer'
     },
     {
       question: 'Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -80,8 +73,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'answr',
-      selected: ''
+      answer: 'answr'
     },
     {
       question: 'Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -90,8 +82,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'answer',
-      selected: ''
+      answer: 'answer'
     },
     {
       question: 'Phasellus nec interdum dui, sed suscipit ligula. Nam at dui dui. Proin quis massa lacinia, venenatis eros in, laoreet nulla. Etiam laoreet, justo nec facilisis malesuada, magna velit ultrices eros, nec rhoncus sapien augue et sem. Nunc viverra tincidunt auctor. Quisque vel leo ornare',
@@ -100,8 +91,7 @@ export default {
         'dhfjfdsjfljldd',
         'fjdhsjfeifmedfdfd'
       ],
-      answer: 'anser',
-      selected: ''
+      answer: 'anser'
     }
   ]
 }
