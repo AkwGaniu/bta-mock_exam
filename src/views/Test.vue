@@ -147,7 +147,6 @@ export default {
 
       // SEND TO THE SERVER
       const payload = {
-        student: this.user.matricNum,
         course: 'csc_321',
         total: tottalQuestion,
         score: this.score

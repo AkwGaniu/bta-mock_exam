@@ -16,7 +16,7 @@
             :key="index"
             :value="option.value"
           >
-            {{ option.text }}
+            {{ option.title }}
           </option>
         </select>
       </div>
@@ -67,11 +67,7 @@ export default {
     return {
       error: '',
       selected: '#',
-      options: [
-        { value: 'csc_111', text: 'Introduction to computer' },
-        { value: 'bio_101', text: 'Earth and its environs' },
-        { value: 'mat_112', text: 'Mathematical methods' }
-      ],
+      options: [],
       formData: {
         questions: '',
         options: '',
@@ -122,6 +118,24 @@ export default {
         })
       }
     }
+  },
+  created () {
+    const config = {
+      method: 'get',
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYnJlOEljbCFkdzJoU1A3NGc2M2giLCJ1c2VyX3R5cGUiOiJVVFNUVUQiLCJtYXRyaWNfbnVtYmVyIjoiMTcwNTkxMDk2In0.BLog3ZvJUVyuB9Z_rjEALIkhKgz4fR-1UOcxG94rRnA'
+      }
+    }
+    fetch('http://localhost:8000/fetch_courses', config).then(resp => {
+      if (resp.ok) {
+        return resp.json()
+      }
+    }).then(data => {
+      this.options = data.data
+      console.log(this.options)
+    }).catch(error => {
+      console.log(error)
+    })
   }
 }
 </script>

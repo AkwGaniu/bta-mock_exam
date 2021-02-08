@@ -3,6 +3,7 @@
 
     <div class="register-proper">
       <h3>Basic Tutor Academy</h3>
+
       <div class="registration-form">
         <span class="error"> {{ error }} </span>
         <form>
@@ -22,6 +23,7 @@
               @blur="animate.name = false"
             >
           </div>
+
           <div class="form-group">
             <label
               for="matric-num"
@@ -38,6 +40,7 @@
               @blur="animate.matric = false"
             >
           </div>
+
           <div class="form-group">
             <label
               for="department"
@@ -54,6 +57,7 @@
               @blur="animate.dept = false"
             >
           </div>
+
           <div class="form-group">
             <label
               for="email"
@@ -69,6 +73,7 @@
               @blur="animate.email = false"
             >
           </div>
+
           <div class="form-group">
             <label
               for="phone"
@@ -84,6 +89,7 @@
               @blur="animate.phone = false"
             >
           </div>
+
           <div class="form-group">
             <label
               for="password"
@@ -100,6 +106,7 @@
               @blur="animate.pass = false"
             >
           </div>
+
           <div class="form-group">
             <label
               for="comfirm-password"
@@ -117,6 +124,7 @@
             >
           </div>
         </form>
+
         <button
           class="register-btn"
           ref="btn"
@@ -132,15 +140,21 @@
             v-else
           >Sign Up</span>
         </button>
+
         <p class="login-link">Already have an account? <router-link to="/">Login Here</router-link></p>
       </div>
+
     </div>
+
     <div class="desc-image">
     </div>
+
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -175,46 +189,54 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState([
+      'baseUrl'
+    ])
+  },
   methods: {
     Register () {
       const { names, matricNum, department, email, phoneNumber, password } = this.formData
-
       if (this.validateFormData()) {
         this.error = ''
-        this.formData = {
-          names: '',
-          matricNum: '',
-          department: '',
-          email: '',
-          phoneNumber: '',
-          password: '',
-          comfirmPassword: ''
-        }
         this.$refs.btn.innerHTML = 'Processing...'
 
-        const url = ''
+        const url = `${this.baseUrl}auth/register`
         const payload = {
-          names: names,
-          matricNum: matricNum,
+          user_type: 'UTSTUD',
+          full_name: names,
+          matric_number: matricNum,
           department: department,
           email: email,
-          phoneNumber: phoneNumber,
+          phone_number: phoneNumber,
           password: password
         }
-        console.log(payload)
 
         const config = {
           method: 'post',
           body: JSON.stringify(payload),
           headers: { 'Content-Type': 'application/json' }
         }
-
         fetch(url, config).then(resp => {
           if (resp.ok) {
             return resp.json()
           }
         }).then(data => {
-          console.log(data)
+          this.$refs.btn.innerHTML = 'Sign Up'
+          if (data.Error === 0) {
+            this.formData = {
+              names: '',
+              matricNum: '',
+              department: '',
+              email: '',
+              phoneNumber: '',
+              password: '',
+              comfirmPassword: ''
+            }
+            this.$router.push('/')
+          } else {
+            this.error = data.Message
+          }
         }).catch(error => {
           console.log(error)
         })
@@ -312,6 +334,5 @@ export default {
       }
     }
   }
-
 }
 </script>

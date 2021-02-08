@@ -8,6 +8,7 @@
       </div>
       <div class="login-form">
         <span class="redirect-error"> {{ error }} </span>
+        <span class="redirect-success-msg"> {{ successError }} </span>
         <form>
           <div class="form-group">
             <label
@@ -62,6 +63,7 @@
             v-else
           >Sign In</span>
         </button>
+
         <p class="reg-link">New BTA studdent? <router-link to="/register">Create Account</router-link></p>
       </div>
     </div>
@@ -69,11 +71,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   data () {
     return {
       error: '',
+      successError: '',
       processing: false,
       matricLabel: false,
       passwordLabel: false,
@@ -94,9 +97,21 @@ export default {
       next(vm => {
         vm.error = 'Please login to access your dashboard'
       })
+    } else if (from.name === 'register') {
+      next(vm => {
+        vm.successError = 'Registration successful, Please Sign In'
+        setTimeout(() => {
+          vm.successError = ''
+        }, 5000)
+      })
     } else {
       next()
     }
+  },
+  computed: {
+    ...mapState([
+      'baseUrl'
+    ])
   },
   methods: {
     ...mapActions([
@@ -112,29 +127,42 @@ export default {
         this.formError.password = true
         this.passwordError = 'please provide your password'
       } else {
-        this.matricError = ''
-        this.passwordError = ''
         this.Processing = true
         this.formError.matric = false
         this.formError.password = false
-        this.formData = {
-          matricNum: '',
-          password: ''
-        }
-
-        // const payload = {
-        //   matricNum: matricNum,
-        //   password: password
-        // }
+        this.matricError = ''
+        this.passwordError = ''
+        //
         const payload = {
-          name: 'Akowanu Ganiu Oluwaseto',
-          matricNum: 170591096,
-          level: '400 Level',
-          dept: 'Computer Science'
+          matric_number: matricNum,
+          password: password
+        }
+        const url = `${this.baseUrl}auth/login`
+        const config = {
+          method: 'post',
+          body: JSON.stringify(payload),
+          headers: { 'Content-Type': 'application/json' }
         }
 
-        this.logIn(payload).then(() => {
-          this.$router.push('/dashboard')
+        fetch(url, config).then(resp => {
+          if (resp.ok) {
+            return resp.json()
+          }
+        }).then(data => {
+          if (data.Error !== 0) {
+            this.error = data.Message
+          } else {
+            this.formData = {
+              matricNum: '',
+              password: ''
+            }
+            localStorage.setItem('bta_user_token', data.data.token)
+            this.logIn().then(() => {
+              this.$router.push('/dashboard')
+            })
+          }
+        }).catch(error => {
+          console.log(error)
         })
       }
     },

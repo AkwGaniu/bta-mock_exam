@@ -13,7 +13,7 @@
               :value="option.value"
               name="flavour-3a"
             >
-              {{ option.text }}
+              {{ option.title }}
             </b-form-checkbox>
           </b-form-group>
         </div>
@@ -26,7 +26,7 @@
               :value="option.value"
               name="flavour-3a"
             >
-              {{ option.text }}
+              {{ option.title }}
             </b-form-checkbox>
           </b-form-group>
         </div>
@@ -41,26 +41,20 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
       error: '',
-      selected: [], // Must be an array reference!
-      options1: [
-        { text: 'Computational Science (CSC 345)', value: 'A', disabled: false },
-        { text: 'Computational Science (CSC 345)', value: 'B', disabled: false },
-        { text: 'Computational Science (CSC 345)', value: 'C', disabled: false },
-        { text: 'Computational Science (CSC 345)', value: 'dsds', disabled: true },
-        { text: 'Computational Science (CSC 345)', value: 'E', disabled: false }
-      ],
-      options2: [
-        { text: 'Computational Science (CSC 345)', value: 'Ahhhj', disabled: false },
-        { text: 'Computational Science (CSC 345)', value: 'Bhjh', disabled: false },
-        { text: 'Computational Science (CSC 345)', value: 'Chhgkgj', disabled: false },
-        { text: 'Computational Science (CSC 345)', value: 'hdhdk', disabled: true },
-        { text: 'Computational Science (CSC 345)', value: 'Ejgkhgg', disabled: false }
-      ]
+      selected: [],
+      options1: [],
+      options2: []
     }
+  },
+  computed: {
+    ...mapState([
+      'baseUrl'
+    ])
   },
   methods: {
     submitCourse () {
@@ -68,18 +62,21 @@ export default {
       if (selectedCourses < 7) {
         this.error = 'Please select 7 courses for registration'
       } else if (selectedCourses > 7) {
-        this.error = 'You cannoot register more than 7 courses'
+        this.error = 'You cannot register more than 7 courses'
       } else {
         this.error = ''
-        console.log(this.selected)
-        const url = ''
+        const url = `${this.baseUrl}course_registration`
         const payload = {
-          selectedCourses: this.selected
+          selected_courses: this.selected
         }
+        const userToken = localStorage.getItem('bta_user_token')
         const config = {
           method: 'post',
           body: JSON.stringify(payload),
-          headers: { 'Content-Type': 'application/json' }
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${userToken}`
+          }
         }
 
         fetch(url, config).then(resp => {
@@ -88,11 +85,40 @@ export default {
           }
         }).then(data => {
           console.log(data)
+          if (data.Error === 0) {
+            location.reload()
+          } else {
+            this.error = data.Message
+          }
         }).catch(error => {
           console.log(error)
         })
       }
     }
+  },
+  created () {
+    const userToken = localStorage.getItem('bta_user_token')
+    const config = {
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${userToken}`
+      }
+    }
+    fetch(`${this.baseUrl}fetch_courses`, config).then(resp => {
+      if (resp.ok) {
+        return resp.json()
+      }
+    }).then(data => {
+      for (let i = 0; i < data.data.length; i++) {
+        if (i < 5) {
+          this.options1.push(data.data[i])
+        } else {
+          this.options2.push(data.data[i])
+        }
+      }
+    }).catch(error => {
+      console.log(error)
+    })
   }
 }
 </script>

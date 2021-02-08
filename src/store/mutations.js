@@ -1,11 +1,9 @@
 export default {
-  logInSuccess: (state, payload) => {
-    state.pending = false
+  logInSuccess: (state) => {
     state.isLoggedIn = true
-    state.user = payload
   },
-  initLogin: (state) => {
-    state.pending = true
+  setUserData: (state, payload) => {
+    state.user = payload
   },
   logOut: (state) => {
     state.isLoggedIn = false

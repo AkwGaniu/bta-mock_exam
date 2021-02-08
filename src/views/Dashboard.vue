@@ -38,7 +38,7 @@
             @click="toggleView('home')"
           >Home</li>
           <li
-            v-if="!registeredForCourses"
+            v-if="hasNotResgisteredCourses"
             :class="{selected: nav.courseReg}"
             @click="toggleView('course reg')"
           >Course Registration</li>
@@ -57,19 +57,13 @@
         </ul>
       </div>
       <section class="details">
-        <CourseReg
-          v-show="nav.courseReg"
-        ></CourseReg>
-        <ResultChecker
-          v-show="nav.checkResult"
-        ></ResultChecker>
+        <CourseReg v-show="nav.courseReg" />
+        <ResultChecker v-show="nav.checkResult" />
         <Home
           v-show="nav.home"
-          :registeredForCourses="registeredForCourses"
-        ></Home>
-        <About
-          v-show="nav.about"
-        ></About>
+          @isRegister="acceptDataFromHomeTemplate"
+         />
+        <About v-show="nav.about" />
       </section>
     </main>
     <MobileNavModal
@@ -78,8 +72,7 @@
       :toggleView="toggleView"
       :nav="nav"
       :signOut="signOut"
-      :registeredForCourses="registeredForCourses"
-    ></MobileNavModal>
+    />
   </div>
 </template>
 
@@ -91,7 +84,6 @@ import Home from '@/components/Home.vue'
 import About from '@/components/About.vue'
 
 import { mapActions, mapState } from 'vuex'
-
 export default {
   components: {
     CourseReg,
@@ -102,7 +94,7 @@ export default {
   },
   data () {
     return {
-      registeredForCourses: true,
+      hasNotResgisteredCourses: false,
       showMobileNav: false,
       nav: {
         home: true,
@@ -117,12 +109,6 @@ export default {
     ...mapState([
       'user'
     ])
-    // ...mapGetters([
-    //   'isAuthenticated'
-    // ]),
-    // userIsLoggedIn () {
-    //   return this.isAuthenticated
-    // }
   },
   methods: {
     ...mapActions([
@@ -166,9 +152,10 @@ export default {
       this.logOut().then(_ => {
         this.$router.push('/')
       })
+    },
+    acceptDataFromHomeTemplate (params) {
+      (params.length === 0) ? this.hasNotResgisteredCourses = true : this.hasNotResgisteredCourses = false
     }
-  },
-  created () {
   }
 }
 </script>

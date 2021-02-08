@@ -54,6 +54,13 @@
       display: block;
       margin-bottom: 10px;
     }
+    .redirect-success-msg {
+      color: $success-msg-color;
+      font-size: 15px;
+      text-align: center;
+      display: block;
+      margin-bottom: 10px;
+    }
     .form-group {
       label {
         display: block;
@@ -100,7 +107,7 @@
     .sign-in-btn {
       display: block;
       width: 40%;
-      margin: 10px auto;
+      margin: 80px auto;
       border-radius: 15px;
       background-color: $tertiary-color;
       color:white;
