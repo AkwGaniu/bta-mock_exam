@@ -1,5 +1,9 @@
 export default {
-  logInSuccess: (state) => {
+  toggleTestAvailable: (state) => {
+    state.testAvailable = !state.testAvailable
+  },
+  logInSuccess: (state, payload) => {
+    state.pending = false
     state.isLoggedIn = true
   },
   setUserData: (state, payload) => {

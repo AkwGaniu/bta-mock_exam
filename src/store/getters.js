@@ -24,5 +24,18 @@ export default {
       courses.push(singleCourse)
     }
     return courses
+  },
+  testAvailable: (state) => {
+    if (state.testAvailable) {
+      return true
+    } else {
+      throw new Error()
+    }
+  },
+  questions: (state) => {
+    for (const ques in state.questions) {
+      state.questions[ques].selected = ''
+    }
+    return state.questions
   }
 }

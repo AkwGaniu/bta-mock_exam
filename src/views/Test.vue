@@ -72,13 +72,15 @@
 </template>
 <script>
 import _ from 'lodash'
-import { mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   data () {
     return {
       score: 0,
       currentTime: '',
       currentIndex: 0,
+      interval: null,
+      quitInterval: false,
       shuffledAns: [],
       answered: [],
       userAnswers: []
@@ -86,8 +88,10 @@ export default {
   },
   computed: {
     ...mapState([
-      'questions',
       'user'
+    ]),
+    ...mapGetters([
+      'questions'
     ]),
     options () {
       const answers = this.shuffleAnswer()
@@ -107,23 +111,33 @@ export default {
       handler () {
         this.shuffleAnswer()
       }
+    },
+    quitInterval: {
+      immediate: true,
+      handler () {
+        clearInterval(this.interval)
+      }
     }
   },
   methods: {
+    ...mapActions([
+      'toggleTestAvailable'
+    ]),
     startTimer (duration) {
       let timer = duration
       let minutes
       let seconds
-      setInterval(() => {
+      this.interval = setInterval(() => {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10)
 
-        minutes = minutes < 10 ? '0' + minutes : minutes
-        seconds = seconds < 10 ? '0' + seconds : seconds
+        minutes = minutes < 10 ? `0${minutes}` : minutes
+        seconds = seconds < 10 ? `0${seconds}` : seconds
         this.$refs.timerContainer.innerHTML = `${minutes}:${seconds}`
-
         if (--timer < 0) {
+          this.toggleTestAvailable()
           this.markQuestion()
+          this.quitInterval = true
           this.$router.push('/dashboard')
         }
       }, 1000)
@@ -144,7 +158,6 @@ export default {
         }
       }
       const tottalQuestion = this.questions.length
-
       // SEND TO THE SERVER
       const payload = {
         course: 'csc_321',
@@ -184,7 +197,7 @@ export default {
   },
   mounted () {
     setTimeout(() => {
-      const minutes = 2 * 60
+      const minutes = 5
       this.startTimer(minutes)
     }, 1000)
   }
