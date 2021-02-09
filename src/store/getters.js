@@ -18,6 +18,7 @@ export default {
       const singleCourse = {
         course_title: state.user.courses[i].course_title,
         course_code: newCourseCode.toUpperCase(),
+        course_code_value: state.user.courses[i].course_code,
         Date: (state.user.courses[i].Date) ? state.user.courses[i].Date : 'Not Yet Scheduled',
         Action: 'Take Quiz'
       }

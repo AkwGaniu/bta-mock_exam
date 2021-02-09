@@ -1,43 +1,6 @@
 <template>
   <div  v-if="Object.keys(user).length !== 0"  class="home-view-container">
-      <div class="sections student-profile">
-       <div class="user-top">
-          <p class="name">
-           <b-icon
-            class="icon"
-            icon="person"
-            font-scale="1.2"
-          ></b-icon>
-          <span> {{ userData.full_name }} </span>
-        </p>
-        <p class="matric">
-          <b-icon
-            class="icon"
-            icon="layers"
-            font-scale="1.2"
-          ></b-icon>
-          <span> {{ userData.matric_number }} </span>
-        </p>
-       </div>
-       <div class="user-bottom">
-        <p class="dept">
-          <b-icon
-            class="icon"
-            icon="bookmarks"
-            font-scale="1.2"
-          ></b-icon>
-          <span> {{ userData.department }} </span>
-        </p>
-        <p class="level">
-           <b-icon
-            class="icon"
-            icon="sort-up"
-            font-scale="1.2"
-          ></b-icon>
-          <span>100 Level</span>
-        </p>
-       </div>
-      </div>
+    <UserDetails :userData="userData" />
     <section class="sections time-table">
       <div
         class="not-registered"
@@ -53,10 +16,10 @@
       >
         <table>
           <thead>
-            <th>Course Title</th>
+            <th  class="left">Course Title</th>
             <th>Course Code</th>
             <th>Date</th>
-            <th>Action</th>
+            <th  class="right">Action</th>
           </thead>
           <tbody>
             <tr
@@ -66,12 +29,21 @@
               <td> {{ course.course_title }} </td>
               <td> {{ course.course_code }} </td>
               <td> {{ course.Date }} </td>
-              <td class="exam-link">
+              <td >
                 <router-link
-                  :to="`/nstruction/${course.course_code}`"
+                  v-if="todayDate === course.Date"
+                  :class="[{enabled: todayDate === course.Date}, 'exam-link']"
+                  :to="`/instruction/${course.course_code_value}`"
                 >
-               {{ course.Action }}
-            </router-link></td>
+                  {{ course.Action }}
+                </router-link>
+                <a
+                  v-else
+                  class="exam-link"
+                >
+                  {{ course.Action }}
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -82,17 +54,24 @@
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
 
+import UserDetails from '@/components/UserDetails.vue'
+import { currentDate } from '../utils/currentDate'
 export default {
+  components: {
+    UserDetails
+  },
   data () {
     return {
       registered: false,
+      todayDate: '',
       items: []
     }
   },
   computed: {
     ...mapState([
       'baseUrl',
-      'user'
+      'user',
+      'todayCourses'
     ]),
     ...mapGetters([
       'fetchCourses',
@@ -108,6 +87,9 @@ export default {
         this.$emit('isRegister', this.fetchCourses)
       }, 500)
     },
+    getCurrentDate () {
+      this.todayDate = currentDate()
+    },
     currentDate () {
       const date = new Date()
       const year = date.getFullYear()
@@ -121,7 +103,7 @@ export default {
   mounted () {
     this.fetchUserDetails(this.baseUrl)
     this.passDataToDashboard()
-    this.currentDate()
+    this.getCurrentDate()
   }
 }
 </script>

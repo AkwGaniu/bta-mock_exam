@@ -5,5 +5,6 @@ export default {
   pending: false,
   isLoggedIn: !!localStorage.getItem('bta_user_token'),
   questions: [],
-  testAvailable: false
+  testAvailable: false,
+  todayCourses: []
 }

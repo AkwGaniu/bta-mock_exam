@@ -48,14 +48,20 @@ const routes = [
     component: TestInstruction,
     async beforeEnter (to, from, next) {
       try {
-        const isAuthourized = await store.getters.testAvailable
-        if (isAuthourized) {
+        const availableCourses = await store.state.todayCourses
+        const course = to.params.course
+        if (availableCourses.indexOf(course) >= 0) {
           next()
+        } else {
+          next({
+            name: 'dashboard'
+            // query: { redirectFrom: to.fullPath }
+          })
         }
       } catch (error) {
         next({
-          name: 'dashboard'
-          // query: { redirectFrom: to.fullPath }
+          name: 'dashboard',
+          query: { redirectFrom: to.fullPath }
         })
       }
     }

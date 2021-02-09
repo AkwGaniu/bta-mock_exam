@@ -1,3 +1,4 @@
+import { currentDate } from '../utils/currentDate'
 export default {
   toggleTestAvailable: (state) => {
     state.testAvailable = !state.testAvailable
@@ -7,7 +8,15 @@ export default {
     state.isLoggedIn = true
   },
   setUserData: (state, payload) => {
+    const date = currentDate()
+    const todayCourses = []
+    for (const course of payload.courses) {
+      if (date === course.Date) {
+        todayCourses.push(course.course_code)
+      }
+    }
     state.user = payload
+    state.todayCourses = todayCourses
   },
   logOut: (state) => {
     state.isLoggedIn = false

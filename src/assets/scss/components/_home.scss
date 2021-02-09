@@ -11,6 +11,8 @@
     border-radius: 20px 10px;
     @media (max-width: 768px) {
       display: block;
+      width: 100%;
+      overflow-x: scroll;
     }
 
     .not-registered {
@@ -39,15 +41,51 @@
     }
   }
   .time-table {
-    padding: 5px 30px;
-    
-    .exam-link {
-      padding: 5px 10px;
-      cursor: pointer;
-      background-color: $tertiary-color;
-      border-radius: 10px;
-      color: white;
-      text-decoration: none;
+    padding: 20px 30px;
+    @media (max-width: 768px) {
+      padding: 20px 5px;
+    }
+    table {
+      width: 100%;
+      font-size: 15px;
+      thead {
+        background-color: $text-color;
+        .left {
+          border-radius: 10px  0px 0px 10px;
+        }
+        .right {
+          border-radius: 0px 10px 10px 0px;
+        }
+        th {
+          border: none;
+          padding: 10px 0px 10px 5px;
+          color: $menu-color;
+        }
+      }
+      tbody {
+        tr {
+          border-bottom: 1px solid rgb(219, 219, 219);
+          td {
+            padding: 15px 0px 5px 10px;
+            .exam-link {
+              padding: 5px 10px;
+              width: 70%;
+              margin: 0px auto;
+              cursor: not-allowed;
+              background-color: $nav-color;
+              border-radius: 10px;
+              color: rgb(56, 56, 56);
+              text-decoration: none;
+            }
+            .enabled {
+              cursor: pointer !important;
+              background-color: $tertiary-color;
+              color: rgb(233, 233, 233);
+            }
+          }
+        }
+      }
     }
   }
 }
+
