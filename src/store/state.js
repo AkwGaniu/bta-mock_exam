@@ -4,7 +4,7 @@ export default {
   baseUrl: 'http://localhost:8000/',
   pending: false,
   isLoggedIn: !!localStorage.getItem('bta_user_token'),
+  isAdminLoggedIn: !!localStorage.getItem('bta_admin_token'),
   questions: [],
-  testAvailable: false,
   todayCourses: []
 }

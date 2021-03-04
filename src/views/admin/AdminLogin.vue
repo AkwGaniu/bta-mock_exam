@@ -5,6 +5,7 @@
     <div class="login-proper">
       <div class="login-form">
         <h1>Admin LogIn</h1>
+          <span class="redirect-error"> {{ error }} </span>
         <form>
           <div class="form-group">
             <label
@@ -17,8 +18,8 @@
               autocomplete="off"
               placeholder="User Name"
               ref="matricField"
-              v-model="formData.matricNum"
-              @keyup.enter="logIn"
+              v-model="formData.userName"
+              @keyup.enter="logInProcess"
               @keyup="showLabel"
               @blur="matricLabel = false"
             >
@@ -32,10 +33,11 @@
             <input
               :class="{errorColor: formError.password}"
               type="password"
+              autocomplete="false"
               placeholder="Password"
               ref="passwordField"
               v-model="formData.password"
-              @keyup.enter="logIn"
+              @keyup.enter="logInProcess"
               @keyup="showLabel"
               @blur="passwordLabel = false"
             >
@@ -46,7 +48,7 @@
         <button
           class="sign-in-btn"
           ref="btn"
-          @click="logIn"
+          @click="logInProcess"
         >
           <b-icon
             v-if="processing"
@@ -65,16 +67,18 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 export default {
   data () {
     return {
+      error: '',
       processing: false,
       matricLabel: false,
       passwordLabel: false,
       matricError: '',
       passwordError: '',
       formData: {
-        matricNum: '',
+        userName: '',
         password: ''
       },
       formError: {
@@ -83,11 +87,19 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState([
+      'baseUrl'
+    ])
+  },
   methods: {
-    logIn () {
-      const { matricNum, password } = this.formData
+    ...mapActions([
+      'logIn'
+    ]),
+    logInProcess () {
+      const { userName, password } = this.formData
 
-      if (matricNum === '') {
+      if (userName === '') {
         this.formError.matric = true
         this.matricError = 'Please provide your matric number'
       } else if (password === '') {
@@ -99,15 +111,10 @@ export default {
         this.Processing = true
         this.formError.matric = false
         this.formError.password = false
-        this.formData = {
-          matricNum: '',
-          password: ''
-        }
 
-        self.location = '/index'
-        const url = ''
+        const url = `${this.baseUrl}auth/login`
         const payload = {
-          matricNum: matricNum,
+          user_name: userName,
           password: password
         }
         const config = {
@@ -121,7 +128,21 @@ export default {
             return resp.json()
           }
         }).then(data => {
-          console.log(data)
+          if (data.Error !== 0) {
+            this.error = data.Message
+          } else {
+            this.formData = {
+              userName: '',
+              password: ''
+            }
+            localStorage.removeItem('bta_user_token')
+            this.$store.commit('logOut')
+            localStorage.setItem('bta_admin_token', data.data.token)
+            this.logIn().then(() => {
+              self.location = '/index'
+              // this.$router.push('/index')
+            })
+          }
         }).catch(error => {
           console.log(error)
         })

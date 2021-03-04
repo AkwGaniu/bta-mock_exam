@@ -76,6 +76,7 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 export default {
   data () {
     return {
+      courseCode: this.$route.params.course,
       score: 0,
       currentTime: '',
       currentIndex: 0,
@@ -86,9 +87,18 @@ export default {
       userAnswers: []
     }
   },
+  beforeRouteLeave (to, from, next) {
+    if (from.name === 'Test') {
+      var r = confirm('Are you sure you want to leave?\n\nNote: If you leave your exam will be submitted automatically')
+      if (r === true) {
+        this.markQuestion()
+      }
+    }
+  },
   computed: {
     ...mapState([
-      'user'
+      'user',
+      'baseUrl'
     ]),
     ...mapGetters([
       'questions'
@@ -121,7 +131,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'toggleTestAvailable'
+      'toggleTestAvailable',
+      'fetchExamQuestions'
     ]),
     startTimer (duration) {
       let timer = duration
@@ -160,27 +171,35 @@ export default {
       const tottalQuestion = this.questions.length
       // SEND TO THE SERVER
       const payload = {
-        course: 'csc_321',
+        course_code: this.courseCode,
         total: tottalQuestion,
         score: this.score
       }
-      console.log(payload)
-      // const url = ''
-      // const config = {
-      //   method: 'post',
-      //   body: JSON.stringify(payload),
-      //   headers: { 'Content-Type': 'application/json' }
-      // }
-
-      // fetch(url, config).then(resp => {
-      //   if (resp.ok) {
-      //     return resp.json()
-      //   }
-      // }).then(data => {
-      //   console.log(data)
-      // }).catch(error => {
-      //   console.log(error)
-      // })
+      const url = `${this.baseUrl}submit_quiz`
+      const Token = localStorage.getItem('bta_user_token')
+      const config = {
+        method: 'post',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Token}`
+        }
+      }
+      fetch(url, config).then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        } else {
+          return Promise.reject
+        }
+      }).then(data => {
+        if (data.Error === 0) {
+          self.location = '/'
+        } else {
+          console.log(data)
+        }
+      }).catch(error => {
+        console.log({ error: error })
+      })
     },
     addToAnswered () {
       if (this.answered.indexOf(this.currentIndex) < 0) {
@@ -196,9 +215,10 @@ export default {
     }
   },
   mounted () {
+    this.fetchExamQuestions({ baseUrl: this.baseUrl, courseCode: this.courseCode })
     setTimeout(() => {
-      const minutes = 5
-      this.startTimer(minutes)
+      // const minutes = 600
+      // this.startTimer(minutes)
     }, 1000)
   }
 }

@@ -10,6 +10,7 @@ import TestInstruction from '../views/TestInstruction.vue'
 import Test from '../views/Test.vue'
 import AminLogin from '../views/admin/AdminLogin.vue'
 import AdminDashboard from '../views/admin/AdminDashboard.vue'
+import fourOfour from '../views/fourOfour.vue'
 
 Vue.use(VueRouter)
 
@@ -17,12 +18,49 @@ const routes = [
   {
     path: '/',
     name: 'login',
-    component: Login
+    component: Login,
+    async beforeEnter (to, from, next) {
+      try {
+        const isAdminAuthenticated = await store.getters.isAdminAuthenticated
+        const isUserLoggedIn = await store.getters.isAuthenticated
+        if (!isUserLoggedIn && !isAdminAuthenticated) {
+          next()
+        } else {
+          if (isUserLoggedIn) {
+            next({ name: 'dashboard' })
+          } else if (isAdminAuthenticated) {
+            next({ name: 'adminHome' })
+          }
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   },
   {
     path: '/register',
     name: 'register',
-    component: Register
+    component: Register,
+    async beforeEnter (to, from, next) {
+      try {
+        const isAdminAuthenticated = await store.getters.isAdminAuthenticated
+        const isUserLoggedIn = await store.getters.isAuthenticated
+        if (!isUserLoggedIn && !isAdminAuthenticated) {
+          next()
+        } else {
+          if (isUserLoggedIn) {
+            next({ name: 'dashboard' })
+          } else if (isAdminAuthenticated) {
+            next({ name: 'adminHome' })
+          }
+        }
+      } catch (error) {
+        next({
+          name: 'dashboard'
+          // query: { redirectFrom: to.fullPath }
+        })
+      }
+    }
   },
   {
     path: '/dashboard',
@@ -33,12 +71,14 @@ const routes = [
         const isAuthourized = await store.getters.isAuthenticated
         if (isAuthourized) {
           next()
+        } else {
+          next({
+            name: 'login',
+            query: { redirectFrom: to.fullPath }
+          })
         }
       } catch (error) {
-        next({
-          name: 'login',
-          query: { redirectFrom: to.fullPath }
-        })
+        console.log(error)
       }
     }
   },
@@ -53,16 +93,10 @@ const routes = [
         if (availableCourses.indexOf(course) >= 0) {
           next()
         } else {
-          next({
-            name: 'dashboard'
-            // query: { redirectFrom: to.fullPath }
-          })
+          next({ name: 'dashboard' })
         }
       } catch (error) {
-        next({
-          name: 'dashboard',
-          query: { redirectFrom: to.fullPath }
-        })
+        console.log(error)
       }
     }
   },
@@ -72,27 +106,63 @@ const routes = [
     component: Test,
     async beforeEnter (to, from, next) {
       try {
-        const isAuthourized = await store.getters.testAvailable
-        if (isAuthourized) {
+        const availableCourses = await store.state.todayCourses
+        const course = to.params.course
+        if (availableCourses.indexOf(course) >= 0) {
           next()
+        } else {
+          next({
+            name: 'dashboard'
+            // query: { redirectFrom: to.fullPath }
+          })
         }
       } catch (error) {
-        next({
-          name: 'dashboard',
-          query: { redirectFrom: to.fullPath }
-        })
+        console.log(error)
       }
     }
   },
   {
     path: '/admin',
     name: 'admin',
-    component: AminLogin
+    component: AminLogin,
+    async beforeEnter (to, from, next) {
+      try {
+        const isAdminAuthenticated = await store.getters.isAdminAuthenticated
+        const isUserLoggedIn = await store.getters.isAuthenticated
+        if (!isUserLoggedIn && !isAdminAuthenticated) {
+          next()
+        } else {
+          if (isUserLoggedIn) {
+            next({ name: 'dashboard' })
+          } else if (isAdminAuthenticated) {
+            next({ name: 'adminHome' })
+          }
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   },
   {
     path: '/index',
     name: 'AdminHome',
-    component: AdminDashboard
+    component: AdminDashboard,
+    async beforeEnter (to, from, next) {
+      try {
+        const isAuthourized = await store.getters.isAdminAuthenticated
+        if (isAuthourized) {
+          next()
+        } else {
+          next({ name: 'login' })
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
+  {
+    path: '*',
+    component: fourOfour
   }
 ]
 

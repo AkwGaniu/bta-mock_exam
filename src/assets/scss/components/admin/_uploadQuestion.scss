@@ -26,6 +26,13 @@
       display: block;
       margin: 0px;
     }
+    .redirect-success-msg {
+      color: $success-msg-color;
+      font-size: 15px;
+      text-align: center;
+      display: block;
+      margin-bottom: 10px;
+    }
     .form-holder {
       margin: 20px 10px;
       label {

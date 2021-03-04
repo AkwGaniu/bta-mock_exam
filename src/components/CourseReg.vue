@@ -97,7 +97,7 @@ export default {
     }
   },
   created () {
-    const userToken = localStorage.getItem('bta_user_token')
+    const userToken = localStorage.getItem('bta__token')
     const config = {
       method: 'get',
       headers: {

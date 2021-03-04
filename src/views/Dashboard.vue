@@ -57,8 +57,8 @@
         </ul>
       </div>
       <section class="details">
-        <CourseReg v-show="nav.courseReg" />
-        <ResultChecker v-show="nav.checkResult" />
+        <CourseReg v-if="nav.courseReg" />
+        <ResultChecker v-if="nav.checkResult" />
         <Home
           v-show="nav.home"
           @isRegister="acceptDataFromHomeTemplate"
@@ -72,6 +72,7 @@
       :toggleView="toggleView"
       :nav="nav"
       :signOut="signOut"
+      :hasNotResgisteredCourses="hasNotResgisteredCourses"
     />
   </div>
 </template>
@@ -149,8 +150,9 @@ export default {
       }
     },
     signOut () {
+      localStorage.removeItem('bta_user_token')
       this.logOut().then(_ => {
-        this.$router.push('/')
+        location.reload()
       })
     },
     acceptDataFromHomeTemplate (params) {

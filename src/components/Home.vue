@@ -11,7 +11,7 @@
         </p>
       </div>
       <div
-        class="list-of-coourse"
+        class="list-of-course"
         v-else
       >
         <table>
@@ -31,7 +31,7 @@
               <td> {{ course.Date }} </td>
               <td >
                 <router-link
-                  v-if="todayDate === course.Date"
+                  v-if="todayDate === course.Date && !course.taken"
                   :class="[{enabled: todayDate === course.Date}, 'exam-link']"
                   :to="`/instruction/${course.course_code_value}`"
                 >
@@ -85,25 +85,16 @@ export default {
     passDataToDashboard () {
       setTimeout(() => {
         this.$emit('isRegister', this.fetchCourses)
-      }, 500)
+      }, 1000)
     },
     getCurrentDate () {
       this.todayDate = currentDate()
-    },
-    currentDate () {
-      const date = new Date()
-      const year = date.getFullYear()
-      const month = date.getMonth()
-      const day = date.getDay()
-      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-      const formattedDate = `${months[month - 1]} ${day}, ${year}`
-      return formattedDate
     }
   },
-  mounted () {
-    this.fetchUserDetails(this.baseUrl)
+  created () {
     this.passDataToDashboard()
     this.getCurrentDate()
+    this.fetchUserDetails(this.baseUrl)
   }
 }
 </script>

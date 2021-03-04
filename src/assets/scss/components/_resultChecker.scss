@@ -26,6 +26,9 @@
   }
   .no-result {
     padding: 100px;
+    @media (max-width: 768px) {
+      padding: 50px;
+    }
     p {
       text-align: center;
       font-size: 30px;

@@ -1,5 +1,8 @@
 .course-reg-view-container {
   padding: 5px 30px;
+  @media (max-width: 768px) {
+    padding: 5px 30px;
+  }
   h2 {
     padding: 20px 40px;
     color: $text-color;
@@ -13,6 +16,8 @@
     border-radius: 20px 10px;
     @media (max-width: 768px) {
       display: block;
+      padding: 40px 10px;
+      width: 100%;
     }
     .error {
       color: $error-msg-color;
@@ -23,7 +28,10 @@
     .sections{
       display: flex;
       justify-content: space-between;
-  
+
+      .custom-control-label {
+        font-size: 16px;
+      }
       @media (max-width: 768px) {
         display: block;
       }

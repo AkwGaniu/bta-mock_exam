@@ -233,6 +233,7 @@ export default {
               password: '',
               comfirmPassword: ''
             }
+            localStorage.setItem('registration_successful', JSON.stringify(true))
             this.$router.push('/')
           } else {
             this.error = data.Message

@@ -5,22 +5,21 @@
         <div class="user-top">
             <p class="name">
             <b>Course Title: </b>
-            <span>Computational analysis</span>
+            <span> {{ course.course_title }} </span>
           </p>
           <p class="matric">
             <b>Course Code: </b>
-            <span>CSC 419</span>
+            <span> {{ course.course_code }} </span>
           </p>
         </div>
         <div class="user-bottom">
           <p class="dept">
             <b>Course Unit: </b>
-            <span> 3 </span>
+            <span> {{ course.course_unit }} </span>
           </p>
           <p class="level">
             <b>Exam Duration: </b>
-
-            <span> 30 Minutes </span>
+            <span> {{ course.exam_duration }} Minutes </span>
           </p>
         </div>
       </div>
@@ -32,7 +31,7 @@
       <div class="start-quiz">
         <router-link
           class="start-quiz-btn"
-          :to="`/test/${testCode}`"
+          :to="`/test/${this.courseCode}`"
         >
           Start Quiz
         </router-link>
@@ -41,11 +40,21 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      testCode: 'csc_434'
+      courseCode: this.$route.params.course,
+      course: Object
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getCourseData'
+    ])
+  },
+  created () {
+    this.course = this.getCourseData(this.courseCode)
   }
 }
 </script>

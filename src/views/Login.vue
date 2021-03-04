@@ -8,7 +8,7 @@
       </div>
       <div class="login-form">
         <span class="redirect-error"> {{ error }} </span>
-        <span class="redirect-success-msg"> {{ successError }} </span>
+        <span class="redirect-success-msg"> {{ successMsg }} </span>
         <form>
           <div class="form-group">
             <label
@@ -76,7 +76,7 @@ export default {
   data () {
     return {
       error: '',
-      successError: '',
+      successMsg: '',
       processing: false,
       matricLabel: false,
       passwordLabel: false,
@@ -93,15 +93,12 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (to.query.redirectFrom) {
+    if (from.name === 'register' && !!localStorage.getItem('registration_successful')) {
       next(vm => {
-        vm.error = 'Please login to access your dashboard'
-      })
-    } else if (from.name === 'register') {
-      next(vm => {
-        vm.successError = 'Registration successful, Please Sign In'
+        vm.successMsg = 'Registration successful, Please Sign In'
+        localStorage.removeItem('registration_successful')
         setTimeout(() => {
-          vm.successError = ''
+          vm.successMsg = ''
         }, 5000)
       })
     } else {
@@ -119,7 +116,6 @@ export default {
     ]),
     tryLogIn () {
       const { matricNum, password } = this.formData
-
       if (matricNum === '') {
         this.formError.matric = true
         this.matricError = 'Please provide your matric number'
@@ -147,6 +143,8 @@ export default {
         fetch(url, config).then(resp => {
           if (resp.ok) {
             return resp.json()
+          } else {
+            return Promise.reject
           }
         }).then(data => {
           if (data.Error !== 0) {
@@ -155,6 +153,10 @@ export default {
             this.formData = {
               matricNum: '',
               password: ''
+            }
+            console.log(localStorage.getItem('bta_admin_token'))
+            if (localStorage.getItem('bta_admin_token') !== null) {
+              localStorage.removeItem('bta_admin_token')
             }
             localStorage.setItem('bta_user_token', data.data.token)
             this.logIn().then(() => {

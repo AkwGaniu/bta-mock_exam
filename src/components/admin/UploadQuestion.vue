@@ -5,6 +5,7 @@
       id="error"
     >
       <span class="error" > {{ error }} </span>
+      <span class="redirect-success-msg"> {{ successMsg }} </span>
       <div class="form-holder">
         <label for="courses">Choose Course</label>
         <select class="input" v-model="selected">
@@ -62,10 +63,13 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
+      userToken: localStorage.getItem('bta_admin_token'),
       error: '',
+      successMsg: '',
       selected: '#',
       options: [],
       formData: {
@@ -74,6 +78,11 @@ export default {
         answers: ''
       }
     }
+  },
+  computed: {
+    ...mapState([
+      'baseUrl'
+    ])
   },
   methods: {
     submitQuestions () {
@@ -93,25 +102,35 @@ export default {
           answers: ''
         }
 
-        const url = ''
+        const url = `${this.baseUrl}upload_questions`
         const payload = {
-          token: 'dfdkfdfsklkfsdfsdkf.dsf;dsf',
-          questions: question,
+          course: this.selected,
+          question: question,
           options: option,
-          answers: answer
+          answer: answer
         }
         console.log(payload)
         const config = {
           method: 'post',
           body: JSON.stringify(payload),
-          headers: { 'Content-Type': 'application/json' }
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.userToken}`
+          }
         }
 
         fetch(url, config).then(resp => {
           if (resp.ok) {
             return resp.json()
+          } else {
+            return Promise.reject
           }
         }).then(data => {
+          if (data.Error === 0) {
+            this.successMsg = data.Message
+          } else {
+            this.error = data.Message
+          }
           console.log(data)
         }).catch(error => {
           console.log(error)
@@ -123,16 +142,17 @@ export default {
     const config = {
       method: 'get',
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYnJlOEljbCFkdzJoU1A3NGc2M2giLCJ1c2VyX3R5cGUiOiJVVFNUVUQiLCJtYXRyaWNfbnVtYmVyIjoiMTcwNTkxMDk2In0.BLog3ZvJUVyuB9Z_rjEALIkhKgz4fR-1UOcxG94rRnA'
+        Authorization: `Bearer ${this.userToken}`
       }
     }
-    fetch('http://localhost:8000/fetch_courses', config).then(resp => {
+    fetch(`${this.baseUrl}fetch_courses`, config).then(resp => {
       if (resp.ok) {
         return resp.json()
+      } else {
+        return Promise.reject
       }
     }).then(data => {
       this.options = data.data
-      console.log(this.options)
     }).catch(error => {
       console.log(error)
     })

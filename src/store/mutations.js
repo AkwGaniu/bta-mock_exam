@@ -18,6 +18,9 @@ export default {
     state.user = payload
     state.todayCourses = todayCourses
   },
+  setQuestionsToState: (state, payload) => {
+    state.questions = payload
+  },
   logOut: (state) => {
     state.isLoggedIn = false
   }
