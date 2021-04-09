@@ -72,6 +72,8 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
+
 import UploadQuestion from '../../components/admin/UploadQuestion.vue'
 import ScheduleQuiz from '../../components/admin/ScheduleQuiz.vue'
 import Home from '../../components/admin/AdminHome.vue'
@@ -95,6 +97,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'logOut'
+    ]),
     toggleMobileNav () {
       this.showMobileNav = !this.showMobileNav
     },
@@ -120,7 +125,10 @@ export default {
       }
     },
     signOut () {
-      self.location = '/admin'
+      localStorage.removeItem('bta_admin_token')
+      this.logOut().then(_ => {
+        self.location = '/admin'
+      })
     }
   }
 }
