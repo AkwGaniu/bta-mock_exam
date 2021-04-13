@@ -27,6 +27,20 @@
           font-size: 15px;
         }
       }
+      .error {
+        color: $error-msg-color;
+        font-size: 15px;
+        text-align: center;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .redirect-success-msg {
+        color: $success-msg-color;
+        font-size: 15px;
+        text-align: center;
+        display: block;
+        margin-bottom: 10px;
+      }
     }
     .course-details {
       width: 100%;
@@ -52,12 +66,12 @@
       .btn-holder {
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         button {
           display: block;
           width: 50%;
           outline: none;
-          padding: 10px 15px;
+          padding: 5px 10px;
           border-radius: 10px;
           background-color: $primary-color;
           border: none;

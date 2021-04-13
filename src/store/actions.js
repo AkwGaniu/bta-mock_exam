@@ -52,6 +52,48 @@ export default {
       console.log(error)
     })
   },
+  fetchAllCourses: ({ commit }, baseUrl) => {
+    const userToken = localStorage.getItem('bta_admin_token')
+    const config = {
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${userToken}`
+      }
+    }
+    fetch(`${baseUrl}fetch_courses`, config).then(resp => {
+      if (resp.ok) {
+        return resp.json()
+      } else {
+        return Promise.reject
+      }
+    }).then(data => {
+      commit('setCourses', data.data)
+    }).catch(error => {
+      console.log(error)
+      self.location = '/admin'
+    })
+  },
+  fetchScheduledExams ({ commit }, baseUrl) {
+    const userToken = localStorage.getItem('bta_admin_token')
+    const config = {
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${userToken}`
+      }
+    }
+    fetch(`${baseUrl}fetch_scheduled_exams`, config).then(resp => {
+      if (resp.ok) {
+        return resp.json()
+      } else {
+        return Promise.reject
+      }
+    }).then(data => {
+      commit('setScheduledCourses', data.data)
+      // console.log(this.scheduledExams)
+    }).catch(error => {
+      console.log(error)
+    })
+  },
   logOut: ({ commit }) => {
     return new Promise(resolve => {
       commit('logOut')

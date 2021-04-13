@@ -13,11 +13,11 @@
             Select a course to upload questions for it
           </option>
           <option
-            v-for="(option, index) in options"
+            v-for="(course, index) in courses"
             :key="index"
-            :value="option.value"
+            :value="course.value"
           >
-            {{ option.title }}
+            {{ course.title }}
           </option>
         </select>
       </div>
@@ -63,7 +63,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -71,7 +71,6 @@ export default {
       error: '',
       successMsg: '',
       selected: '#',
-      options: [],
       formData: {
         questions: '',
         options: '',
@@ -81,10 +80,14 @@ export default {
   },
   computed: {
     ...mapState([
-      'baseUrl'
+      'baseUrl',
+      'courses'
     ])
   },
   methods: {
+    ...mapActions([
+      'fetchAllCourses'
+    ]),
     submitQuestions () {
       const question = this.formData.questions
       const option = this.formData.options
@@ -139,23 +142,7 @@ export default {
     }
   },
   created () {
-    const config = {
-      method: 'get',
-      headers: {
-        Authorization: `Bearer ${this.userToken}`
-      }
-    }
-    fetch(`${this.baseUrl}fetch_courses`, config).then(resp => {
-      if (resp.ok) {
-        return resp.json()
-      } else {
-        return Promise.reject
-      }
-    }).then(data => {
-      this.options = data.data
-    }).catch(error => {
-      console.log(error)
-    })
+    this.fetchAllCourses(this.baseUrl)
   }
 }
 </script>

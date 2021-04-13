@@ -21,6 +21,15 @@ export default {
   setQuestionsToState: (state, payload) => {
     state.questions = payload
   },
+  setCourses: (state, payload) => {
+    state.courses = payload
+  },
+  setScheduledCourses: (state, payload) => {
+    state.scheduledExams = payload
+  },
+  updateScheduledCourses: (state, payload) => {
+    state.scheduledExams = payload
+  },
   logOut: (state) => {
     state.isLoggedIn = false
   }

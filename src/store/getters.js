@@ -46,5 +46,11 @@ export default {
   },
   getCourseData: (state) => (courseCode) => {
     return state.user.courses.find((course) => course.course_code === courseCode)
+  },
+  getSelectedCourseNotFound: (state) => (courseCode) => {
+    return state.courses.find((course) => course.value === courseCode)
+  },
+  getSelectedCourse: (state) => (courseCode) => {
+    return state.scheduledExams.find((course) => course.code === courseCode)
   }
 }
