@@ -84,9 +84,9 @@ export default {
             return resp.json()
           }
         }).then(data => {
-          console.log(data)
           if (data.Error === 0) {
-            location.reload()
+            // location.reload()
+            this.$router.push('/dashboard')
           } else {
             this.error = data.Message
           }

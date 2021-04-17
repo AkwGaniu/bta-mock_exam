@@ -139,8 +139,7 @@ export default {
             this.$store.commit('logOut')
             localStorage.setItem('bta_admin_token', data.data.token)
             this.logIn().then(() => {
-              self.location = '/index'
-              // this.$router.push('/index')
+              this.$router.push('/index')
             })
           }
         }).catch(error => {

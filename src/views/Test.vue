@@ -193,7 +193,7 @@ export default {
         }
       }).then(data => {
         if (data.Error === 0) {
-          self.location = '/'
+          this.$router.push('/')
         } else {
           console.log(data)
         }
