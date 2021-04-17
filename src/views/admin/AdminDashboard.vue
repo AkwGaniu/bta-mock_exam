@@ -3,7 +3,10 @@
     <div class="nav-head">
       <div class="logo-holder">
         <div class="logo">
-          <router-link to="/index">
+          <router-link
+            to="/index"
+            @click="navigateView('home')"
+          >
             <img src="../../assets/BTA11.png" alt="BTA LOGO">
           </router-link>
         </div>

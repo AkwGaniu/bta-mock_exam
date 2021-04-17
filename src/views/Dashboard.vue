@@ -3,7 +3,10 @@
     <div class="nav-head">
       <div class="logo-holder">
         <div class="logo">
-          <router-link to="/dashboard">
+          <router-link
+            to="/dashboard"
+            @click="toggleView('home')"
+          >
             <img src="../assets/BTA11.png" alt="BTA LOGO">
           </router-link>        </div>
       </div>
@@ -14,7 +17,10 @@
     <div class="mobile-nav">
       <div class="logo-holder">
         <div class="logo">
-          <router-link to="/dashboard">
+          <router-link
+            to="/dashboard"
+            @click="toggleView('home')"
+          >
             <img src="../assets/BTA11.png" alt="BTA LOGO">
           </router-link>
         </div>

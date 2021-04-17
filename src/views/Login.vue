@@ -63,8 +63,7 @@
             v-else
           >Sign In</span>
         </button>
-
-        <p class="reg-link">New BTA studdent? <router-link to="/register">Create Account</router-link></p>
+        <p class="reg-link">New BTA studdent? <router-link to="/register">Create Account</router-link>| <router-link to="/admin">Admin</router-link></p>
       </div>
     </div>
   </div>
