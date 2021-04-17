@@ -127,7 +127,7 @@ export default {
     signOut () {
       localStorage.removeItem('bta_admin_token')
       this.logOut().then(_ => {
-        self.location = '/admin'
+        this.$router.push('/admin')
       })
     }
   }

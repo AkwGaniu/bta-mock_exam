@@ -152,7 +152,8 @@ export default {
     signOut () {
       localStorage.removeItem('bta_user_token')
       this.logOut().then(_ => {
-        location.reload()
+        // location.reload()
+        this.$router.push('/')
       })
     },
     acceptDataFromHomeTemplate (params) {
