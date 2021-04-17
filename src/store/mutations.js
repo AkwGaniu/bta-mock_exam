@@ -7,6 +7,10 @@ export default {
     state.pending = false
     state.isLoggedIn = true
   },
+  adminLogInSuccess: (state, payload) => {
+    state.pending = false
+    state.isAdminLoggedIn = true
+  },
   setUserData: (state, payload) => {
     const date = currentDate()
     const todayCourses = []
@@ -32,5 +36,8 @@ export default {
   },
   logOut: (state) => {
     state.isLoggedIn = false
+  },
+  adminLogOut: (state) => {
+    state.isAdminLoggedIn = false
   }
 }

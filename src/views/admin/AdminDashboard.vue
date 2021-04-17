@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'logOut'
+      'adminLogOut'
     ]),
     toggleMobileNav () {
       this.showMobileNav = !this.showMobileNav
@@ -129,7 +129,7 @@ export default {
     },
     signOut () {
       localStorage.removeItem('bta_admin_token')
-      this.logOut().then(_ => {
+      this.adminLogOut().then(_ => {
         this.$router.push('/admin')
       })
     }

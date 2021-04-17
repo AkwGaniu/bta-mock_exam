@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'logIn'
+      'adminLogIn'
     ]),
     logInProcess () {
       const { userName, password } = this.formData
@@ -131,14 +131,15 @@ export default {
           if (data.Error !== 0) {
             this.error = data.Message
           } else {
+            this.matricLabel = false
+            this.passwordLabel = false
             this.formData = {
               userName: '',
               password: ''
             }
             localStorage.removeItem('bta_user_token')
-            this.$store.commit('logOut')
             localStorage.setItem('bta_admin_token', data.data.token)
-            this.logIn().then(() => {
+            this.adminLogIn().then(() => {
               this.$router.push('/index')
             })
           }

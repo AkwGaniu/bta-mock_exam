@@ -5,12 +5,12 @@ import store from '../store/index.js'
 
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import Dashoard from '../views/Dashboard.vue'
+import Dashboard from '../views/Dashboard.vue'
 import TestInstruction from '../views/TestInstruction.vue'
 import Test from '../views/Test.vue'
 import AminLogin from '../views/admin/AdminLogin.vue'
 import AdminDashboard from '../views/admin/AdminDashboard.vue'
-import fourOfour from '../views/fourOfour.vue'
+import four0Four from '../views/fourOfour.vue'
 
 Vue.use(VueRouter)
 
@@ -65,11 +65,11 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: Dashoard,
+    component: Dashboard,
     async beforeEnter (to, from, next) {
       try {
-        const isAuthourized = await store.getters.isAuthenticated
-        if (isAuthourized) {
+        const isAuthorized = await store.getters.isAuthenticated
+        if (isAuthorized) {
           next()
         } else {
           next({
@@ -123,7 +123,7 @@ const routes = [
   },
   {
     path: '/admin',
-    name: 'admin',
+    name: 'adminLogin',
     component: AminLogin,
     async beforeEnter (to, from, next) {
       try {
@@ -136,6 +136,8 @@ const routes = [
             next({ name: 'dashboard' })
           } else if (isAdminAuthenticated) {
             next({ name: 'adminHome' })
+          } else {
+            next()
           }
         }
       } catch (error) {
@@ -149,11 +151,11 @@ const routes = [
     component: AdminDashboard,
     async beforeEnter (to, from, next) {
       try {
-        const isAuthourized = await store.getters.isAdminAuthenticated
-        if (isAuthourized) {
+        const isAuthorized = await store.getters.isAdminAuthenticated
+        if (isAuthorized) {
           next()
         } else {
-          next({ name: 'login' })
+          next({ name: 'adminLogin' })
         }
       } catch (error) {
         console.log(error)
@@ -162,7 +164,7 @@ const routes = [
   },
   {
     path: '*',
-    component: fourOfour
+    component: four0Four
   }
 ]
 

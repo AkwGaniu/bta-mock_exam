@@ -2,6 +2,9 @@ export default {
   logIn: ({ commit }) => {
     commit('logInSuccess')
   },
+  adminLogIn: ({ commit }) => {
+    commit('adminLogInSuccess')
+  },
   fetchUserDetails: ({ commit }, baseUrl) => {
     const userToken = localStorage.getItem('bta_user_token')
     const config = {
@@ -97,6 +100,12 @@ export default {
   logOut: ({ commit }) => {
     return new Promise(resolve => {
       commit('logOut')
+      resolve()
+    })
+  },
+  adminLogOut: ({ commit }) => {
+    return new Promise(resolve => {
+      commit('adminLogOut')
       resolve()
     })
   }
