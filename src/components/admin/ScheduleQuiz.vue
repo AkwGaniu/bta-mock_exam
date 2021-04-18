@@ -164,16 +164,18 @@ export default {
         }
       } else {
         const singleCourse = this.getSelectedCourseNotFound(this.selectedCourse)
-        const newCode = singleCourse.value.split('_')
-        const newCourseCode = `${newCode[0].toUpperCase()} ${newCode[1]}`
-        const end = singleCourse.title.indexOf(' (')
-        const newTitle = singleCourse.title.substring(singleCourse.title.lenght, end)
-        this.formData = {
-          title: newTitle,
-          code: newCourseCode,
-          duration: '',
-          exam_date: '',
-          show_result: false
+        if (singleCourse !== undefined) {
+          const newCode = singleCourse.value.split('_')
+          const newCourseCode = `${newCode[0].toUpperCase()} ${newCode[1]}`
+          const end = singleCourse.title.indexOf(' (')
+          const newTitle = singleCourse.title.substring(singleCourse.title.lenght, end)
+          this.formData = {
+            title: newTitle,
+            code: newCourseCode,
+            duration: '',
+            exam_date: '',
+            show_result: false
+          }
         }
       }
     },

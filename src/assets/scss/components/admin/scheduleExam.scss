@@ -13,10 +13,13 @@
     
     @media (max-width: 768px) {
       display: block;
+      width: 100%;
+      padding: 20px 0px 30px;
     }
     .course-schedule {
       width: 90%;
       margin: 0px auto;
+
       .form-group {
         width: 100%;
         select {
@@ -77,6 +80,9 @@
           border: none;
           color: whitesmoke;
           font-size: 20px;
+          @media (max-width: 768px) {
+            font-size: 15px;
+          }
         }
       }
     }

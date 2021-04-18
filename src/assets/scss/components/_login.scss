@@ -33,7 +33,7 @@
     }
 
     h1 {
-      padding: 80px 100px;
+      padding: 80px 6px;
       color: $tertiary-color;
       text-align: center;
       font-weight: bold;
@@ -109,17 +109,18 @@
     }
     .sign-in-btn {
       display: block;
-      width: 40%;
+      width: 70%;
       margin: 80px auto;
       border-radius: 15px;
       background-color: $tertiary-color;
       color:white;
-      padding: 5px 10px;
-      font-size: 25px;
+      padding: 5px 0px;
+      font-size: 20px;
       outline: none;
       border: none;
       @media(max-width: 768px) {
-        width: 40%;
+        // width: 40%;
+        font-size: 15px;
       }
       &:hover {
         background-color: $hover-color;
@@ -127,11 +128,7 @@
     }
     .reg-link {
       text-align: center;
-      margin-top: 100px;
       color: $tertiary-color;
-      @media(max-width: 768px) {
-        margin-top: 100px;
-      }
       a {
         text-decoration: underline;
         cursor: pointer;

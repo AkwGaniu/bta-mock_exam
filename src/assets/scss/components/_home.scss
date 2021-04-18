@@ -21,6 +21,9 @@
         font-size: 30px;
         color: $text-color;
       }
+      @media(max-width: 768px) {
+        padding: 20px;
+      }
     }
   }
   .student-profile {

@@ -23,13 +23,15 @@ const routes = [
       try {
         const isAdminAuthenticated = await store.getters.isAdminAuthenticated
         const isUserLoggedIn = await store.getters.isAuthenticated
+        console.log(isUserLoggedIn, isAdminAuthenticated)
         if (!isUserLoggedIn && !isAdminAuthenticated) {
           next()
         } else {
           if (isUserLoggedIn) {
-            next({ name: 'dashboard' })
+            next({ name: 'Dashboard' })
           } else if (isAdminAuthenticated) {
-            next({ name: 'adminHome' })
+            console.log('here')
+            next({ name: 'AdminHome' })
           }
         }
       } catch (error) {
@@ -49,14 +51,14 @@ const routes = [
           next()
         } else {
           if (isUserLoggedIn) {
-            next({ name: 'dashboard' })
+            next({ name: 'Dashboard' })
           } else if (isAdminAuthenticated) {
-            next({ name: 'adminHome' })
+            next({ name: 'AdminHome' })
           }
         }
       } catch (error) {
         next({
-          name: 'dashboard'
+          name: 'Dashboard'
           // query: { redirectFrom: to.fullPath }
         })
       }
@@ -64,7 +66,7 @@ const routes = [
   },
   {
     path: '/dashboard',
-    name: 'dashboard',
+    name: 'Dashboard',
     component: Dashboard,
     async beforeEnter (to, from, next) {
       try {
@@ -93,7 +95,7 @@ const routes = [
         if (availableCourses.indexOf(course) >= 0) {
           next()
         } else {
-          next({ name: 'dashboard' })
+          next({ name: 'Dashboard' })
         }
       } catch (error) {
         console.log(error)
@@ -112,7 +114,7 @@ const routes = [
           next()
         } else {
           next({
-            name: 'dashboard'
+            name: 'Dashboard'
             // query: { redirectFrom: to.fullPath }
           })
         }
@@ -123,7 +125,7 @@ const routes = [
   },
   {
     path: '/admin',
-    name: 'adminLogin',
+    name: 'AdminLogin',
     component: AminLogin,
     async beforeEnter (to, from, next) {
       try {
@@ -133,9 +135,9 @@ const routes = [
           next()
         } else {
           if (isUserLoggedIn) {
-            next({ name: 'dashboard' })
+            next({ name: 'Dashboard' })
           } else if (isAdminAuthenticated) {
-            next({ name: 'adminHome' })
+            next({ name: 'AdminHome' })
           } else {
             next()
           }
@@ -155,7 +157,7 @@ const routes = [
         if (isAuthorized) {
           next()
         } else {
-          next({ name: 'adminLogin' })
+          next({ name: 'AdminLogin' })
         }
       } catch (error) {
         console.log(error)
