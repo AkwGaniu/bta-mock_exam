@@ -101,7 +101,7 @@ export default {
 
       if (userName === '') {
         this.formError.matric = true
-        this.matricError = 'Please provide your matric number'
+        this.matricError = 'Please provide your username'
       } else if (password === '') {
         this.formError.password = true
         this.passwordError = 'please provide your password'
