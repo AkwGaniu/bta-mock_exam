@@ -69,7 +69,17 @@
           <div class="btn-holder">
             <button
               @click="setExamSchedule"
-            > Update Schedule </button>
+            >
+              <b-icon
+                v-if="processing"
+                icon="three-dots"
+                animation="cylon"
+                font-scale="2"
+              ></b-icon>
+              <span
+                v-else
+              >Update Schedule</span>
+            </button>
           </div>
         </div>
       </div>
@@ -106,6 +116,7 @@ export default {
       error: '',
       successMsg: '',
       selectedCourse: '',
+      processing: false,
       formData: {
         title: '',
         code: '',
@@ -190,6 +201,7 @@ export default {
       } else if (duration === '' || examDate === '') {
         this.error = 'Please fill out all fields before submitting'
       } else {
+        this.processing = true
         this.error = ''
         this.selectedCourse = ''
         this.formData = {
@@ -223,6 +235,7 @@ export default {
             return Promise.reject
           }
         }).then(data => {
+          this.processing = false
           if (data.Error === 0) {
             this.successMsg = data.Message
             this.$store.commit('updateScheduledCourses', data.data)

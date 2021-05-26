@@ -35,7 +35,15 @@
         class="submit-btn"
         @click="submitCourse"
       >
-        Submit
+        <b-icon
+          v-if="processing"
+          icon="three-dots"
+          animation="cylon"
+          font-scale="2"
+        ></b-icon>
+        <span
+          v-else
+        >Register Courses</span>
       </button>
     </div>
   </div>
@@ -46,6 +54,7 @@ export default {
   data () {
     return {
       error: '',
+      processing: false,
       selected: [],
       options1: [],
       options2: []
@@ -65,6 +74,7 @@ export default {
         this.error = 'You cannot register more than 7 courses'
       } else {
         this.error = ''
+        this.processing = true
         const url = `${this.baseUrl}course_registration`
         const payload = {
           selected_courses: this.selected
@@ -84,9 +94,10 @@ export default {
             return resp.json()
           }
         }).then(data => {
+          this.processing = true
           if (data.Error === 0) {
             // location.reload()
-            this.$router.push('/dashboard')
+            this.$router.push('/')
           } else {
             this.error = data.Message
           }

@@ -108,7 +108,7 @@ export default {
       } else {
         this.matricError = ''
         this.passwordError = ''
-        this.Processing = true
+        this.processing = true
         this.formError.matric = false
         this.formError.password = false
 
@@ -128,6 +128,7 @@ export default {
             return resp.json()
           }
         }).then(data => {
+          this.processing = false
           if (data.Error !== 0) {
             this.error = data.Message
           } else {

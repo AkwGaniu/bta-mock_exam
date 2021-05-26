@@ -56,7 +56,15 @@
           href="#error"
           @click="submitQuestions"
         >
-          Submit
+          <b-icon
+            v-if="processing"
+            icon="three-dots"
+            animation="cylon"
+            font-scale="2"
+          ></b-icon>
+          <span
+            v-else
+          >Upload Questions</span>
         </a>
       </div>
     </div>
@@ -69,6 +77,7 @@ export default {
     return {
       userToken: localStorage.getItem('bta_admin_token'),
       error: '',
+      processing: false,
       successMsg: '',
       selected: '#',
       formData: {
@@ -97,6 +106,7 @@ export default {
       } else if (question === '' || option === '' || answer === '') {
         this.error = 'Please fill out all fields before submitting'
       } else {
+        this.processing = true
         this.error = ''
         this.selected = '#'
         this.formData = {
@@ -129,6 +139,7 @@ export default {
             return Promise.reject
           }
         }).then(data => {
+          this.processing = false
           if (data.Error === 0) {
             this.successMsg = data.Message
           } else {

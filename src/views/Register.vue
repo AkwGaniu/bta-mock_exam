@@ -199,8 +199,8 @@ export default {
       const { names, matricNum, department, email, phoneNumber, password } = this.formData
       if (this.validateFormData()) {
         this.error = ''
-        this.$refs.btn.innerHTML = 'Processing...'
-
+        // this.$refs.btn.innerHTML = 'Processing...'
+        this.processing = true
         const url = `${this.baseUrl}auth/register`
         const payload = {
           user_type: 'UTSTUD',
@@ -222,7 +222,8 @@ export default {
             return resp.json()
           }
         }).then(data => {
-          this.$refs.btn.innerHTML = 'Sign Up'
+          // this.$refs.btn.innerHTML = 'Sign Up'
+          this.processing = true
           if (data.Error === 0) {
             this.formData = {
               names: '',

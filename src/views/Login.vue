@@ -127,7 +127,7 @@ export default {
         this.formError.password = true
         this.passwordError = 'please provide your password'
       } else {
-        this.Processing = true
+        this.processing = true
         this.formError.matric = false
         this.formError.password = false
         this.matricError = ''
@@ -151,6 +151,7 @@ export default {
             return Promise.reject
           }
         }).then(data => {
+          this.processing = false
           if (data.Error !== 0) {
             this.error = data.Message
           } else {
@@ -158,7 +159,6 @@ export default {
               matricNum: '',
               password: ''
             }
-            console.log(localStorage.getItem('bta_admin_token'))
             if (localStorage.getItem('bta_admin_token') !== null) {
               localStorage.removeItem('bta_admin_token')
             }
